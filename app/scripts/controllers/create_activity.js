@@ -35,7 +35,9 @@ angular.module('partyBidApp')
                 $scope.names = true
             }
             //判断名称是否重复，存活动名称以及跳转
-            $scope.save_item = function (name) {
+            $scope.save_item = function (name)
+            {
+
                 var names = [];
                 var names = JSON.parse(localStorage['names']);
                 //检查名称是否重复

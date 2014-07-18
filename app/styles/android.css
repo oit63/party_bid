@@ -378,7 +378,7 @@ footer {
 
 .btn-2.active, .btn-2:active {
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #1674b8), color-stop(0.02, #0060a4), color-stop(1, #054a8a));
-	box-shadow: 0px 1px 2px 1px rgba(255,255,255, 1);
+	/*box-shadow: 0px 1px 2px 1px rgba(255,255,255, 1);*/
 }
 
 .btn-3 {
