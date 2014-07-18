@@ -18,8 +18,18 @@ angular.module('partyBidApp')
         //跳转到“创建活动”页面
         $scope.go_create_activity = function(){
             $location.path('create_activity');};
+        //跳转到“活动登陆”页面
+        $scope.go_activity_sign_up = function(name){
+            $location.path('activity_sign_up');};
         //读取活动
         $scope.activities=JSON.parse(localStorage['names']);
+        //反向重置活动数组
+        var temp = [];
+        for(var i= $scope.activities.length -1;i >= 0; i-- )
+        {
+            temp[$scope.activities.length -i-1] = $scope.activities[i];
+        }
+        $scope.activities = temp ;
     });
 
 /**

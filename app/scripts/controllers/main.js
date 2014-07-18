@@ -14,15 +14,14 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
-        var names = [];
-        var names=JSON.parse(localStorage['names']);
-        if(names.length == 0)
+
+        if(localStorage.length == 0 )
         {
-            $location.path('activity_list');
+            $location.path('create_activity');
         }
         else
         {
-            $location.path('create_activity');
+            $location.path('activity_list');
         }
 
     });

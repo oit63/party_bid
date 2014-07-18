@@ -32,18 +32,18 @@
             <h4>活动名字</h4>
 
             <input class="input-full"  ng-model='name' placeholder="Enter a name here"  type='text'/>
-            <h4  style ='color:#dd1144'>{{tips}}</h4>
+            <br /><h4  style ='color:#dd1144'>{{tips}}</h4>
 
             <hr>
 
         </div>
     </div>
 
-</div>
+    <button  class="btn-style btn-2"   ng-disabled='!name' ng-click='save_item(name)'  >创建</button>
 
-<footer>
-    <button  class="btn btn-2"   ng-disabled='!name' ng-click='save_item(name)'  >创建</button>
-</footer>
+
+
+</div>
 
 
 
