@@ -19,9 +19,9 @@ angular.module('partyBidApp')
         {
             $location.path('create_activity');
         }
-        else
-        {
-            $location.path('activity_list');
-        }
+else
+{
+    $location.path('activity_list');
+}
 
-    });
+});

@@ -18,54 +18,57 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
-        //为防止来访者直接路由create_acticity
-        if(localStorage.length == 0 )
-        {
-            var names = [];
-            localStorage['names'] =JSON.stringify(names);
-            $location.path('/create_activity');
-        }
+        var names = [];
+           //保证有数组，并存入数据,跳转页面
+        if(localStorage.length ==0)
+            {
+                localStorage['names'] =JSON.stringify(names);
+                $scope.save_item = function (name)
+                {
+                        names.push(name);
+                        localStorage['names'] = JSON.stringify(names);
+                        $location.path('/activity_sign_up');
+
+                }
+            }
         else
-        {
-            //判断“返回”是否应该显示
-              //读取活动
-            names =JSON.parse(localStorage['names']);
-            if (names.length >= 1 )
             {
-                $scope.names = true
-            }
-            //判断名称是否重复，存活动名称以及跳转
-            $scope.save_item = function (name)
-            {
-
-                var names = [];
-                var names = JSON.parse(localStorage['names']);
-                //检查名称是否重复
-                var count = 0;
-                for (var i = names.length; i >= 0; i--) {
-
-                    if ($scope.name == names[i]) {
-                        count++;
+                //读取活动
+                names = JSON.parse(localStorage['names']);
+                //判断“返回”按钮是否应该显示
+                if (names.length >= 1 )
+                    {
+                        $scope.names = true
                     }
-                }
-                if (count == 1) {
-                    $scope.tips = '*活动名称重复'
-                }
-                if (count == 0) {
-                    //存活动名称，更新数据以及跳转
+                $scope.save_item = function (name)
+                    {
+                        //检查名称是否重复
+                        //创建标记
+                        var count = 0;
+                        //遍历数组找出重复
+                        for (var i = names.length; i >= 0; i--)
+                            {
+                                if (name == names[i])
+                                    {
+                                        count++;
+                                    }
+                            }
+                        //结果处理
+                        if (count == 1)
+                            {
+                                $scope.tips = '*活动名称重复'
+                            }
+                        if (count == 0)
+                            {
+                                //存活动名称，更新数据以及跳转
+                                names.push(name);
+                                localStorage['names'] = JSON.stringify(names);
+                                $location.path('/activity_sign_up');
+                            }
+                    }
+             }
 
-                    var names = [];
-                    var names = JSON.parse(localStorage['names']);
-                    names.push(name);
-                    localStorage['names'] = JSON.stringify(names);
-                    $location.path('/activity_sign_up');
-                }
 
-                var names = [];
-                var names = JSON.parse(localStorage['names']);
-            }
-
-         }
 
     });
 
