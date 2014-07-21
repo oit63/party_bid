@@ -24,24 +24,16 @@ angular
         controller: 'MainCtrl'
       })
       .when('/create_activity', {
-        templateUrl: '../views/create_activity.html',
-        controller: 'CreateCtrl'
+        templateUrl: 'views/create_activity.html',
+        controller: 'create_activity_controller'
         })
       .when('/activity_sign_up', {
         templateUrl: 'views/activity_sign_up.html',
-        controller: 'SignUpCtrl'
+        controller: 'activity_sign_up_controller'
         })
         .when('/activity_list', {
             templateUrl: 'views/activity_list.html',
-            controller: 'ListCtrl'
-        })
-        .when('/choose_food', {
-            templateUrl: 'views/choose_food.html',
-            controller: 'ChooseFoodCtrl'
-        })
-        .when('/show_orders', {
-            templateUrl: 'views/show_orders.html',
-            controller: 'ShowOrdersCtrl'
+            controller: 'activity_list_controller'
         })
         .otherwise({
             redirectTo: '/'
