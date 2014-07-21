@@ -18,9 +18,18 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
+        if (localStorage.length != 0 )
+        {
+            $scope.names = true
+        }
+        else
+        {
+            $scope.names = false
+        }
 
         $scope.save_item = function (name)
             {
+
                 var list_json= JSON.parse(localStorage['activityKey'] || '[]');
                 for(var i=0;i<list_json.length;i++)
                 {
