@@ -18,6 +18,8 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
+        $scope.go_activity_list = function(){
+            $location.path('/activity_list');};
         if (localStorage.length != 0 )
         {
             $scope.names = true
@@ -31,7 +33,7 @@ angular.module('partyBidApp')
             {
 
                 var list_json= JSON.parse(localStorage['activityKey'] || '[]');
-                for(var i=0;i<list_json.length;i++)
+                for(var i = 0;i<list_json.length;i++)
                 {
                     if(list_json[i]==name)
                     {

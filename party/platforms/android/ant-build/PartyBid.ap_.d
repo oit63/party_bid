@@ -46,9 +46,9 @@
 /Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/fonts/glyphicons-halflings-regular.woff \
 /Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/images/yeoman.d2754b85.png \
 /Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/scripts/oldieshim.d41d8cd9.js \
-/Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/scripts/scripts.8e4fdb7b.js \
+/Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/scripts/scripts.54f86942.js \
 /Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/scripts/vendor.e698c818.js \
-/Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/styles/main.7490b0e4.css \
+/Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/styles/main.672c0a9e.css \
 /Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/styles/vendor.b201f5e5.css \
 /Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/views/about.html \
 /Users/TanghaoTsui/Documents/study/party_bid/party/platforms/android/assets/www/views/activity_list.html \

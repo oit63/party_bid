@@ -10,8 +10,13 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
-
-//        $scope.go_create_activity = function(){
-//            $location.path('create_activity');};
+        if(localStorage.length = 1) {
+            $scope.startFlag = "开始";
+        }
+        if(localStorage.length > 1){
+            $scope.startFlag = "结束";
+        }
+      $scope.go_activity_list = function(){
+            $location.path('/activity_list');};
 
     })

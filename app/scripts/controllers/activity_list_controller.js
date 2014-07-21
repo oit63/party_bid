@@ -19,12 +19,14 @@ angular.module('partyBidApp')
         $scope.go_create_activity = function(){
             $location.path('create_activity');};
         //跳转到“活动登陆”页面
-        $scope.go_activity_sign_up = function(name){
-            $location.path('activity_sign_up');};
-        //读取活动
-        if(localStorage.length==!0)
+        $scope.go_activity_sign_up = function(event){
+            localStorage['yourChoice']=JSON.stringify(event);
+           $location.path('activity_sign_up');
+    };
+
+        if(localStorage.length!=0)
             {
-                $scope.activities=JSON.parse(localStorage['activityKey'] || "[]");
+                $scope.activities = JSON.parse(localStorage['activityKey'] || "[]");
             }
         else
             {

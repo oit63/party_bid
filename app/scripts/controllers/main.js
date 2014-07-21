@@ -15,13 +15,13 @@ angular.module('partyBidApp')
             'Karma'
         ];
 
-        if(localStorage.length == 0 )
+        if(localStorage.length != 0 )
         {
-            $location.path('create_activity');
+            $location.path('activity_list');
         }
         else
         {
-            $location.path('activity_list');
+            $location.path('create_activity');
         }
 
 });
