@@ -47,6 +47,7 @@ angular.module('partyBidApp')
                 else{
                     list_json.unshift(name);
                     localStorage['activityKey']=JSON.stringify(list_json);
+                    localStorage.setItem('yourChoice',JSON.stringify(name));
                     $location.path('/activity_sign_up')
                 }
             }
