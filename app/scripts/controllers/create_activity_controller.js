@@ -35,7 +35,7 @@ angular.module('partyBidApp')
                 var list_json= JSON.parse(localStorage['activityKey'] || '[]');
                 for(var i = 0;i<list_json.length;i++)
                 {
-                    if(list_json[i]==name)
+                    if(list_json[i] == name)
                     {
                         var repeat=1;
                     }
@@ -46,7 +46,7 @@ angular.module('partyBidApp')
                 }
                 else{
                     list_json.unshift(name);
-                    localStorage['activityKey']=JSON.stringify(list_json);
+                    localStorage['activityKey'] = JSON.stringify(list_json);
                     localStorage.setItem('yourChoice',JSON.stringify(name));
                     $location.path('/activity_sign_up')
                 }
