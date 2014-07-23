@@ -21,20 +21,21 @@ angular.module('partyBidApp')
                 $scope.stateButton = "结束" ;
             }
             else{
-                state = "开始"
-                $scope.stateButton = "开始" ;
+                if(confirm("报名结束确认?"))
+                {
+                    state = "开始"
+                    $scope.stateButton = "开始";
+                }
             }
             localStorage.setItem('state', state);
-//            if(state){$scope.stateButton = "结束";}
-//            else{$scope.stateButton = "开始";}
-//            if($scope.stateButton = "结束")
-//            {$scope.stateButton = "开始";}
-//            if($scope.stateButton = "开始")
-//            {$scope.stateButton = "结束";}
             var currentActive = localStorage.getItem('yourChoice');
             localStorage.setItem('currentActive', currentActive);
             $location.path('activity_sign_up');
         };
         $scope.stateButton = localStorage['state'] || "开始";
-
+        if((localStorage['state'] == "结束") && (localStorage.getItem('currentActive') == localStorage.getItem('yourChoice')) ) //在currentactive不存在为假
+        {
+            $scope.disFlag = true;
+        }
+        console.log($scope.disFlag);
     })
