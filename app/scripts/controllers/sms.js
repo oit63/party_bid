@@ -11,12 +11,12 @@ var native_accessor = {
         if (typeof this.process_received_message === 'function') {
             this.process_received_message(json_message);
             var sms_data = JSON.parse(localStorage['sms_data'] || '[]');
+            //message中转站
                 message.message = json_message.messages[0].message;
                 message.phone = json_message.messages[0].phone;
                 message.activity = JSON.parse(localStorage['currentActive']);
                 sms_data.push(message);
             localStorage.setItem("sms_data",JSON.stringify(sms_data));
-
 //            var tmp = {
 //                "messages": [
 //                    {

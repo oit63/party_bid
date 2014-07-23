@@ -32,10 +32,55 @@ angular.module('partyBidApp')
             localStorage.setItem('currentActive', currentActive);
             $location.path('activity_sign_up');
         };
-        $scope.stateButton = localStorage['state'] || "开始";
-        if((localStorage['state'] == "结束") && (localStorage.getItem('currentActive') == localStorage.getItem('yourChoice')) ) //在currentactive不存在为假
+        $scope.stateButton = localStorage['state'] || "开始";//设计接口 在改变按钮字样
+        //点过一次上面了
+        if((localStorage['state'] == 0))
         {
-            $scope.disFlag = true;
+
         }
-        console.log($scope.disFlag);
+        else if((localStorage['state'] == '结束'))
+        {
+            if(localStorage.getItem('currentActive') == localStorage.getItem('yourChoice'))
+            {
+
+            }
+            else
+            {
+                $scope.disFlag = true;
+                //设计接口改变按钮字样
+            }
+        }
+        else
+        {
+
+        }
+
+        {
+            var sms_items = JSON.parse(localStorage['sms_data'] || '[]');
+            if(localStorage['sms_data'] != '[]')
+            var sms_items_filted = [];
+            for (var indexer = 0; indexer < JSON.parse(localStorage['sms_data']).length; indexer++) {
+                if (sms_items[indexer].activity == JSON.parse(localStorage['yourChoice'])) {
+//                var sms_items_push = [];
+//                sms_items_push.push(sms_items[indexer]);
+//                console.log(sms_items[indexer].activity);
+//                $scope.sms_items
+                    sms_items_filted.push(sms_items[indexer]);
+                    console.log(sms_items[indexer]);
+                    console.log(sms_items[indexer].activity);
+                }
+
+//            if (JSON.parse(localStorage['sms_data'])[indexer].activity == JSON.parse(localStorage['currentActive']))
+
+//            $scope.sms_items = sms_items
+
+//    console.log("console.log(JSON.parse(localStorage['sms_data']).activity);");
+            }
+            console.log(sms_items_filted);
+            $scope.sms_items = sms_items_filted;
+
+        }
+//        console.log(JSON.parse(localStorage['sms_data'])[0].activity);
+        console.log();
+
     })

@@ -1,7 +1,7 @@
 <header>
 报名
 <div class="header-right">
-    <button  class="btn btn-4"  ng-disabled ="disFlag"  ng-click='state()' >{{stateButton}}</button>
+    <button  class="btn btn-4"  ng-disabled ="disFlag"  ng-click='state() ' >{{stateButton}}</button>
 
 </div>
 
@@ -13,11 +13,11 @@
 
 <div id="wrapper" class="wrapper scrollable">
     <ul class="list-style-2">
-        <li class=" clearfix btn-default" ng-repeat="event in activities" ng-click='activity_sign_up(event.name)'>
+        <li class=" clearfix btn-default" ng-repeat="item in sms_items  track by $index" >
 
-            <p class="p-left">{{event.name}}</p>
-            <i class="p-left">{{event.phone}}</i>
-            <span class="glyphicon glyphicon-circle-arrow-right p-right"></span>
+            <p class="p-left">{{item.message}}</p>
+            <i class="p-left">{{item.phone}}</i>
+            <span class="glyphicon  "></span>
         </li>
     </ul>
 </div>
