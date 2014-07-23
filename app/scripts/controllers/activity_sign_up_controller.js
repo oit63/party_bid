@@ -55,9 +55,13 @@ angular.module('partyBidApp')
 
         }
 
-        {
-            var sms_items = JSON.parse(localStorage['sms_data'] || '[]');
+
+            var sms_items = JSON.parse(localStorage['sms_data'] || '[]' );
+            console.log(sms_items);
+            localStorage['sms_data'] = JSON.stringify(sms_items);
+
             if(localStorage['sms_data'] != '[]')
+            {
             var sms_items_filted = [];
             for (var indexer = 0; indexer < JSON.parse(localStorage['sms_data']).length; indexer++) {
                 if (sms_items[indexer].activity == JSON.parse(localStorage['yourChoice'])) {
@@ -76,10 +80,12 @@ angular.module('partyBidApp')
 
 //    console.log("console.log(JSON.parse(localStorage['sms_data']).activity);");
             }
+            }
             console.log(sms_items_filted);
             $scope.sms_items = sms_items_filted;
+            $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
 
-        }
+
 //        console.log(JSON.parse(localStorage['sms_data'])[0].activity);
         console.log();
 
