@@ -80,11 +80,11 @@ angular.module('partyBidApp')
 
 //    console.log("console.log(JSON.parse(localStorage['sms_data']).activity);");
             }
+                $scope.sms_items = sms_items_filted;
+                $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
             }
-            console.log(sms_items_filted);
-            $scope.sms_items = sms_items_filted;
-            $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
 
+            console.log(sms_items_filted);
 
 //        console.log(JSON.parse(localStorage['sms_data'])[0].activity);
         console.log();
