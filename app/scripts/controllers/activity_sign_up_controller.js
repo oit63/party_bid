@@ -71,26 +71,20 @@ angular.module('partyBidApp')
         localStorage['sms_data'] = JSON.stringify(sms_items);
         if(localStorage['sms_data'] != '[]')
         {
-            var sms_items_filted = [];
+            var sms_items_filted = [];//定义过滤器，性质为对象数组
             for (var indexer = 0; indexer < JSON.parse(localStorage['sms_data']).length; indexer++) {
                 if (sms_items[indexer].activity == JSON.parse(localStorage['yourChoice'])) {
-//                var sms_items_push = [];
-//                sms_items_push.push(sms_items[indexer]);
-//                console.log(sms_items[indexer].activity);
-//                $scope.sms_items
                     sms_items_filted.push(sms_items[indexer]);
                     console.log(sms_items[indexer]);
                     console.log(sms_items[indexer].activity);
                 }
 
-//            if (JSON.parse(localStorage['sms_data'])[indexer].activity == JSON.parse(localStorage['currentActive']))
-
-//            $scope.sms_items = sms_items
-
-//    console.log("console.log(JSON.parse(localStorage['sms_data']).activity);");
             }
             $scope.sms_items = sms_items_filted;
-            $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
+            if($scope.sms_items.length )
+            {
+                $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
+            }
         }
 
 
