@@ -36,12 +36,9 @@ angular.module('partyBidApp')
 
         $scope.stateButton = localStorage['state'] || "开始";//设计接口 在改变按钮字样
         //点过一次上面了
-
-       // 按钮变灰
+        // 按钮变灰
         if((localStorage['state'] == 0))
-        {
-
-        }
+        { }
         else if((localStorage['state'] == '结束'))
         {
             if(localStorage.getItem('currentActive') == localStorage.getItem('yourChoice'))
@@ -66,30 +63,27 @@ angular.module('partyBidApp')
         }
 
         //读取数据
-        var sms_items = JSON.parse(localStorage['sms_data'] || '[]' );
-        console.log(sms_items);
-        localStorage['sms_data'] = JSON.stringify(sms_items);
-        if(localStorage['sms_data'] != '[]')
+
+        $scope.refresh = function ()
         {
-            var sms_items_filted = [];//定义过滤器，性质为对象数组
-            for (var indexer = 0; indexer < JSON.parse(localStorage['sms_data']).length; indexer++) {
-                if (sms_items[indexer].activity == JSON.parse(localStorage['yourChoice'])) {
-                    sms_items_filted.push(sms_items[indexer]);
-                    console.log(sms_items[indexer]);
-                    console.log(sms_items[indexer].activity);
-                }
-
-            }
-            $scope.sms_items = sms_items_filted;
-            if($scope.sms_items.length )
+            var sms_items = JSON.parse(localStorage['sms_data'] || '[]' );
+            localStorage['sms_data'] = JSON.stringify(sms_items);
+            if(localStorage['sms_data'] != '[]')
             {
-                $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
+                var sms_items_filted = [];//定义过滤器，性质为对象数组
+                for (var indexer = 0; indexer < JSON.parse(localStorage['sms_data']).length; indexer++) {
+                    if (sms_items[indexer].activity == JSON.parse(localStorage['yourChoice'])) {
+                        sms_items_filted.push(sms_items[indexer]);
+                    }
+                }
+                $scope.sms_items = sms_items_filted;
+                if($scope.sms_items.length )
+                {
+                    $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
+                }
             }
+
         }
-
-
-        console.log(sms_items_filted);
-
-        console.log();
-
+        $scope.refresh();
     })
+

@@ -10,6 +10,12 @@ var native_accessor = {
     receive_message: function (json_message) {
         if (typeof this.process_received_message === 'function') {
             this.process_received_message(json_message);
+
+            var bookScope = angular.element(document.getElementById('wrapper')).scope();
+                bookScope.$apply(function () {
+                    bookScope.refresh();
+                })
+
             var sms_data = JSON.parse(localStorage['sms_data'] || '[]');
             //message中转站
                 message.message = json_message.messages[0].message;
