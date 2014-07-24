@@ -19,6 +19,7 @@ angular.module('partyBidApp')
             {
                 state = "结束";
                 $scope.stateButton = "结束" ;
+
             }
             else{
                 if(confirm("报名结束确认?"))
@@ -32,8 +33,11 @@ angular.module('partyBidApp')
             localStorage.setItem('currentActive', currentActive);
             $location.path('activity_sign_up');
         };
+
         $scope.stateButton = localStorage['state'] || "开始";//设计接口 在改变按钮字样
         //点过一次上面了
+
+       // 按钮变灰
         if((localStorage['state'] == 0))
         {
 
@@ -46,22 +50,27 @@ angular.module('partyBidApp')
             }
             else
             {
+                console.log('开始');
+                $scope.stateButton = "开始"
+                console.log($scope.stateButton);
                 $scope.disFlag = true;
                 //设计接口改变按钮字样
             }
         }
         else
         {
+            if((localStorage['state'] == '结束') && localStorage.getItem('currentActive') != localStorage.getItem('yourChoice'))
+            {
 
+            }
         }
 
-
-            var sms_items = JSON.parse(localStorage['sms_data'] || '[]' );
-            console.log(sms_items);
-            localStorage['sms_data'] = JSON.stringify(sms_items);
-
-            if(localStorage['sms_data'] != '[]')
-            {
+        //读取数据
+        var sms_items = JSON.parse(localStorage['sms_data'] || '[]' );
+        console.log(sms_items);
+        localStorage['sms_data'] = JSON.stringify(sms_items);
+        if(localStorage['sms_data'] != '[]')
+        {
             var sms_items_filted = [];
             for (var indexer = 0; indexer < JSON.parse(localStorage['sms_data']).length; indexer++) {
                 if (sms_items[indexer].activity == JSON.parse(localStorage['yourChoice'])) {
@@ -80,13 +89,13 @@ angular.module('partyBidApp')
 
 //    console.log("console.log(JSON.parse(localStorage['sms_data']).activity);");
             }
-                $scope.sms_items = sms_items_filted;
-                $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
-            }
+            $scope.sms_items = sms_items_filted;
+            $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
+        }
 
-            console.log(sms_items_filted);
 
-//        console.log(JSON.parse(localStorage['sms_data'])[0].activity);
+        console.log(sms_items_filted);
+
         console.log();
 
     })
