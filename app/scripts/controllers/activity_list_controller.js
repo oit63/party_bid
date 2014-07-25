@@ -33,7 +33,9 @@ angular.module('partyBidApp')
             $location.path('/create_activity');
         }
 
+        $scope.current_activity = JSON.parse(localStorage['currentActive']);
     });
+
 /**
  * Created by TanghaoTsui on 14-7-15.
  */

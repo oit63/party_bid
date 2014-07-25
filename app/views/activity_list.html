@@ -10,12 +10,10 @@
 <div id="wrapper" class="wrapper scrollable">
     <ul class="list-style-2">
         <li class= listCSS ng-repeat="event in activities" ng-click='go_activity_sign_up(event)'>
-            <p class="p-left">{{event}}</p>
-
+            <p class= "{{ event == current_activity}}">{{event}}</p>
             <span class="glyphicon p-right"></span>
         </li>
     </ul>
-
 </div>
 //background-color: yellow;
         //" clearfix btn-default"
