@@ -24,28 +24,25 @@ angular
         controller: 'MainCtrl'
       })
       .when('/create_activity', {
-        templateUrl: 'views/create_activity.html',
-        controller: 'create_activity_controller'
+        templateUrl: '../views/create.html'
+//        controller: 'create_activity_controller'
         })
-      .when('/activity_sign_up', {
-        templateUrl: 'views/activity_sign_up.html',
-        controller: 'activity_sign_up_controller'
+      .when('/sign_up', {
+        templateUrl: '../views/sign_up.html',
+        controller: 'sign_up_controller'
         })
         .when('/activity_list', {
-            templateUrl: 'views/activity_list.html',
-            controller: 'activity_list_controller'
+         templateUrl: '../views/list.html',
+         controller: 'activity_list_controller'
         })
         .otherwise({
             redirectTo: '/'
         });
-//      .when('/create_activity', {
-//        templateUrl: 'views/create_activity.html',
-//        controller: 'CreateActivityCtrl'
-//      })
+
 
 //      })
 //      .when('/activity_list', {
-//          templateUrl: 'views/activity_list.html',
+//          templateUrl: 'views/list.html',
 //          controller: 'ActivityListCtrl'
 //      })
 //      .otherwise({
@@ -55,4 +52,4 @@ angular
 
 
 //CreateActivityCtrl
-//views/create_activity.html
+//views/create.html
