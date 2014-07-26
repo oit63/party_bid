@@ -1,0 +1,32 @@
+<header>
+报名{{persons_count}}
+<div class="header-right">
+    <button  class="btn btn-4"  ng-disabled ="disFlag"  ng-click='state() ' >{{stateButton}}</button>
+
+</div>
+
+<div class="header-left">
+    <a class="btn-style btn-4" ng-click='go_activity_list()'>返回</a>
+</div>
+
+</header>
+
+<div id="wrapper" class="wrapper scrollable">
+    <ul class="list-style-2">
+        <li class=" clearfix btn-default" ng-repeat="item in sms_items  track by $index" >
+
+            <p >{{item.message}}</p>
+            <i >{{item.phone}}</i>
+            <span class="glyphicon  "></span>
+        </li>
+    </ul>
+</div>
+
+<footer>
+    <ul class="footer-nav footer-nav-2tabs">
+        <li class="active">
+            <a href="survey-list.html"><br />报名</a></li>
+        <li>
+            <a href="survey-history.html"><br />竞价</a></li>
+    </ul>
+</footer>

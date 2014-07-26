@@ -1,0 +1,24 @@
+<header >
+    创建活动
+    <div class="header-left">
+        <a  ng-show="isShowEscapeButton" class="btn-style btn-4" ng-click='goToActivityList()'>返回</a>
+    </div>
+</header>
+
+<div id="wrapper" class="wrapper scrollable">
+    <div class="wrapper-inner">
+        <div class="form-wrapper">
+
+            <hr/>
+            <h4>活动名字</h4>
+
+            <input class="input-full" ng-model='inputedString' placeholder="Enter a name here" type='text'/>
+            <br/><h4 style='color:#dd1144'>{{tips}}</h4>
+            <hr>
+
+        </div>
+    </div>
+</div>
+<footer>
+    <button class="btn btn-2" ng-disabled='!inputedString' ng-click='setActivityList(inputedString)'>创建</button>
+</footer>>

@@ -19,21 +19,17 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/create_activity', {
-        templateUrl: '../views/create.html'
-//        controller: 'create_activity_controller'
+      .when('/activityCreate', {
+        templateUrl: '../views/activityCreate.html',
+        controller: 'activityCreateController'
         })
-      .when('/sign_up', {
-        templateUrl: '../views/sign_up.html',
-        controller: 'sign_up_controller'
+      .when('/activitySignUp', {
+        templateUrl: '../views/activitySignUp.html',
+        controller: 'activitySignUpController'
         })
-        .when('/activity_list', {
-         templateUrl: '../views/list.html',
-         controller: 'activity_list_controller'
+        .when('/', {
+         templateUrl: '../views/activityList.html',
+         controller: 'activityListController'
         })
         .otherwise({
             redirectTo: '/'
@@ -42,7 +38,7 @@ angular
 
 //      })
 //      .when('/activity_list', {
-//          templateUrl: 'views/list.html',
+//          templateUrl: 'views/activityList.html',
 //          controller: 'ActivityListCtrl'
 //      })
 //      .otherwise({
@@ -52,4 +48,4 @@ angular
 
 
 //CreateActivityCtrl
-//views/create.html
+//views/activityCreate.html

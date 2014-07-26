@@ -8,32 +8,23 @@
  * Controller of the partyBidApp
  */
 angular.module('partyBidApp')
-    .controller('activity_list_controller', function ($scope, $location) {
+    .controller('activityListController', function ($scope, $location) {
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
             'Karma'
         ];
-        $scope.create_activity = '创建活动';
-        //跳转到“创建活动”页面
-        $scope.go_create_activity = function(){
-            $location.path('create_activity');};
-        //跳转到“活动登陆”页面
-        $scope.go_activity_sign_up = function(event){
-            localStorage['yourChoice']=JSON.stringify(event);
+        if (isApplicationfirstRun()) {
+            $location.path('/activityCreate');
+        }
+        $scope.goToActivityCreate = function(){
+            $location.path('activityCreate');};
+        $scope.clickForDetail = function(HostsLatestChoice){
+            Activity.setLatestChoice(HostsLatestChoice);
             $location.path('activity_sign_up');
         };
-
-        if(localStorage.length!=0)
-        {
-            $scope.activities = JSON.parse(localStorage['activityKey'] || "[]");
-        }
-        else
-        {
-            $location.path('/create_activity');
-        }
-
-        $scope.current_activity = JSON.parse(localStorage['currentActive']);
+        $scope.activityListInMemory = Activity.getActivityList();
+        $scope.ActivedActivity = Activity.getActivedActivity();
     });
 
 /**

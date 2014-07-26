@@ -4,7 +4,7 @@
 
 
 angular.module('partyBidApp')
-    .controller('sign_up_controller', function ($scope, $location) {
+    .controller('activitySignUpController', function ($scope, $location) {
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -73,9 +73,9 @@ angular.module('partyBidApp')
             {
 
                 var sms_items_filted = [];//定义过滤器，性质为对象数组
-                for (var indexer = 0; indexer < JSON.parse(localStorage['sms_data']).length; indexer++) {
-                    if (sms_items[indexer].activity == JSON.parse(localStorage['yourChoice'])) {
-                        sms_items_filted.push(sms_items[indexer]);
+                for (var i = 0; i < JSON.parse(localStorage['sms_data']).length; i++) {
+                    if (sms_items[i].activity == JSON.parse(localStorage['yourChoice'])) {
+                        sms_items_filted.push(sms_items[i]);
                     }
                 }
                 $scope.sms_items = sms_items_filted;
