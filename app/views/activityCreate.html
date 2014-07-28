@@ -1,7 +1,7 @@
 <header >
     创建活动
     <div class="header-left">
-        <a  ng-show="isShowEscapeButton" class="btn-style btn-4" ng-click='goToActivityList()'>返回</a>
+        <a  ng-show="isShowEscapeButton" class="btn-style btn-4" ng-click='goToActivityListPage()'>返回</a>
     </div>
 </header>
 
@@ -20,5 +20,5 @@
     </div>
 </div>
 <footer>
-    <button class="btn btn-2" ng-disabled='!inputedString' ng-click='setActivityList(inputedString)'>创建</button>
+    <button class="btn btn-2" ng-disabled='!inputedString' ng-click='CreateAnActivity(inputedString)'>创建</button>
 </footer>>

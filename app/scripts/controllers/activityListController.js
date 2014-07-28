@@ -9,19 +9,13 @@
  */
 angular.module('partyBidApp')
     .controller('activityListController', function ($scope, $location) {
-        $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
-        if (isApplicationfirstRun()) {
-            $location.path('/activityCreate');
-        }
+        isApplicationfirstRun() ? $location.path('activityCreate') : "";
+
         $scope.goToActivityCreate = function(){
             $location.path('activityCreate');};
         $scope.clickForDetail = function(HostsLatestChoice){
-            Activity.setLatestChoice(HostsLatestChoice);
-            $location.path('activity_sign_up');
+            Activity.setHostsLatestChoice(HostsLatestChoice);
+            $location.path('activitySignUp');
         };
         $scope.activityListInMemory = Activity.getActivityList();
         $scope.ActivedActivity = Activity.getActivedActivity();

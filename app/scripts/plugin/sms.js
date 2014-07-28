@@ -3,9 +3,8 @@
 var native_accessor = {
     send_sms: function (phone, message)
     {
-//        native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
+//      native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
         console.log(phone, message);
-
     },
 
     receive_message: function (json_message)
@@ -38,7 +37,7 @@ var native_accessor = {
             console.log("报名成功!");
         }
 
-//        native_accessor.send_sms(phone, message);
+//      native_accessor.send_sms(phone, message);
         var log = console.log("报名成功!");
     }
 };

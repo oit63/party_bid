@@ -12,16 +12,12 @@
  */
 angular.module('partyBidApp')
     .controller('activityCreateController', function ($scope, $location) {
-        $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
-        $scope.isShowEscapeButton = Activity.isFilledInActivityList()
-        $scope.goToActivityList = function () {
+        $scope.isShowEscapeButton = Activity.isFilledInActivityList();
+        $scope.goToActivityListPage = function () {
             $location.path('/activityList')
         };
-        $scope.setActivityList = function (inputedString) {
+        $scope.CreateAnActivity = function (inputedString) {
+            console.log("apply success")
             if (Activity.isRepeat(inputedString)) {
                 $scope.tips = "活动名称有重复，请重新输入！"
             }else{
@@ -30,7 +26,5 @@ angular.module('partyBidApp')
             }
 
         };
-
-
     });
 
