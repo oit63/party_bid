@@ -29,30 +29,34 @@ function ShortMessageAccept(sms) {
 
 function shortMessageDevider(sms) {
 
+    sms.messages[0].message.replace(/\s/g,'');
 
-    var sms_data = ShortMessageList.getList();
-    var message = {};
-    message.message = sms.messages[0].message;
-    message.phone = sms.messages[0].phone;
-    message.activity = JSON.parse(localStorage['currentActive']);
-    sms_data.push(message);
-    localStorage.setItem("sms_data",JSON.stringify(sms_data));
-    var wrapper = angular.element(document.getElementById('wrapper')).scope();
-    wrapper.$apply(function () {
-        wrapper.refresh();
-    });
+    if(sms.search(/bm/i)==0 ){
+        sms.messages[0].message.substr(2).trim();
 
-    if(localStorage['state'] == '开始')
-    {
-        console.log("活动尚未开始，请稍后");
+        var message = {};
+        message.message = sms.messages[0].message;
+        message.phone = sms.messages[0].phone;
+        message.activity = Activity.getActivedActivity;
+        ShortMessageList.push(message);
+
+        var wrapper = angular.element(document.getElementById('wrapper')).scope();
+        wrapper.$apply(function () {
+            wrapper.refresh();
+        });
+
+        if(localStorage['state'] == '开始')
+        {
+            console.log("活动尚未开始，请稍后");
+        }
+        else
+        {
+            console.log("报名成功!");
+        }
+
+    //      native_accessor.send_sms(phone, message);
+        var log = console.log("报名成功!");
     }
-    else
-    {
-        console.log("报名成功!");
-    }
-
-//      native_accessor.send_sms(phone, message);
-    var log = console.log("报名成功!");
 }
 
 

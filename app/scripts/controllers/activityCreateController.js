@@ -17,7 +17,7 @@ angular.module('partyBidApp')
             $location.path('/activityList')
         };
         $scope.CreateAnActivity = function (inputedString) {
-            console.log("apply success")
+            console.log("apply success");
             if (Activity.isRepeat(inputedString)) {
                 $scope.tips = "活动名称有重复，请重新输入！"
             }else{

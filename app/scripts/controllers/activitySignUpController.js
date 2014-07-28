@@ -18,7 +18,9 @@ angular.module('partyBidApp')
         //set_state
         //set_currentActivity
         $scope.goToActivityListPage = function(){
-            $location.path('/activity_list');};
+            $location.path('/activity_list');
+        };
+
         $scope.start_sign_up = function()
         {
             if(SignUp.get_state() == "开始")

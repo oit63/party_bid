@@ -12,12 +12,16 @@ angular.module('partyBidApp')
         isApplicationfirstRun() ? $location.path('activityCreate') : "";
 
         $scope.goToActivityCreate = function(){
-            $location.path('activityCreate');};
+            $location.path('activityCreate');
+        };
+
         $scope.clickForDetail = function(HostsLatestChoice){
             Activity.setHostsLatestChoice(HostsLatestChoice);
             $location.path('activitySignUp');
         };
+
         $scope.activityListInMemory = Activity.getActivityList();
+
         $scope.ActivedActivity = Activity.getActivedActivity();
     });
 

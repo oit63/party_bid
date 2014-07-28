@@ -27,7 +27,7 @@ Activity.setHostsLatestChoice = function (HostsLatestChoice) {
 
 
 Activity.isFilledInActivityList = function () {
-    if (localStorage.length != 0)
+    if (localStorage.length !== 0)
         return true;
     else
         return false;

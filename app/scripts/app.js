@@ -20,15 +20,15 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '../views/activityList.html',
+        templateUrl: 'views/activityList.html',
         controller: 'activityListController'
         })
       .when('/activityCreate', {
-        templateUrl: '../views/activityCreate.html',
+        templateUrl: 'views/activityCreate.html',
         controller: 'activityCreateController'
         })
       .when('/activitySignUp', {
-        templateUrl: '../views/activitySignUp.html',
+        templateUrl: 'views/activitySignUp.html',
         controller: 'activitySignUpController'
         })
         .otherwise({
