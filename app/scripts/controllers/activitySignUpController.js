@@ -20,9 +20,16 @@ angular.module('partyBidApp')
         $scope.goToActivityListPage = function(){
             $location.path('/activity_list');
         };
+        $scope.is_sign_up = "end";
+
+        $scope.end_sign_up =function(){
+            $scope.is_sign_up = "end";
+        };
 
         $scope.start_sign_up = function()
         {
+            $scope.is_sign_up = "start";
+
             if(SignUp.get_state() == "开始")
             {
                 var startSigningUpButtonText = "结束"

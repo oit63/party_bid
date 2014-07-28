@@ -1,7 +1,8 @@
 <header>
 报名-{{persons_count}}
-<div class="header-right" >
-    <button class="btn btn-4"  ng-disabled ="disFlag"  ng-click='start_signing_up() ' >kaishi</button>
+<div class="header-right" ng-switch="is_sign_up">
+    <button ng-switch-default  class="btn btn-4"  ng-disabled ="disFlag"  ng-click='start_signing_up() ' >开始</button>
+    <button ng-switch-when="start" class="btn btn-4"  ng-disabled ="disFlag"  ng-click='end_signing_up() ' >结束</button>
 </div>
 
 <div class="header-left">

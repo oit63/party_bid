@@ -22,6 +22,7 @@ angular.module('partyBidApp')
                 $scope.tips = "活动名称有重复，请重新输入！"
             }else{
                 clickToSetActivityList(inputedString);
+                console.log("ff");
                 $location.path('/activitySignUp')
             }
 
