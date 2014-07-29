@@ -29,9 +29,8 @@ angular.module('partyBidApp')
                     $scope.tips="活动名称有重复，请重新输入！"
                 }
                 else{
-                    list_json.unshift(name);
-                    localStorage['activityKey'] = JSON.stringify(list_json);
-                    localStorage.setItem('yourChoice',JSON.stringify(name));
+                    shift_event(name);
+                    localStorage['yourChoice'] = JSON.stringify(name);
                     $location.path('/activity_sign_up')
                 }
             }
@@ -49,6 +48,7 @@ function is_localStorage_null(){
         return false
     }
 }
+
 function is_repeat(name)
 {
     var list_json= JSON.parse(localStorage['activityKey'] || '[]');
@@ -59,5 +59,12 @@ function is_repeat(name)
         }
     }
     return false
+}
+
+function shift_event(name)
+{
+    var list_json= JSON.parse(localStorage['activityKey'] || '[]');
+    list_json.unshift(name);
+    localStorage['activityKey'] = JSON.stringify(list_json);
 }
 
