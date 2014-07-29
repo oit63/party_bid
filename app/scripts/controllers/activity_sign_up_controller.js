@@ -10,19 +10,20 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
-        $scope.go_activity_list = function(){
-            $location.path('/activity_list');};
-        var state;
-        $scope.in_start_state = function(){
+        $scope.go_activity_list = function()
+        {
+            $location.path('/activity_list');
+        };
+
+        $scope.in_start_state = function()
+        {
             $scope.in_state = "end";
             localStorage["state"] = "runing";
-
-            localStorage.setItem('state', state);
-            var currentActive = localStorage.getItem('yourChoice');
-            localStorage.setItem('currentActive', currentActive);
+            setCurrentAsChoice();
             $location.path('activity_sign_up');
         };
-        $scope.in_end_state = function(){
+        $scope.in_end_state = function()
+        {
             $scope.in_state = "start";
             localStorage["state"] = "stop";
         };
@@ -93,3 +94,7 @@ angular.module('partyBidApp')
     })
 
 
+function setCurrentAsChoice() {
+    var currentActive = localStorage.getItem('yourChoice');
+    localStorage.setItem('currentActive', currentActive);
+}
