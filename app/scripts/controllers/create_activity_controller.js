@@ -21,20 +21,10 @@ angular.module('partyBidApp')
         $scope.go_activity_list = function(){
             $location.path('/activity_list');};
         $scope.names = is_localStorage_null();
-
-
         $scope.save_item = function (name)
             {
 
-                var list_json= JSON.parse(localStorage['activityKey'] || '[]');
-                for(var i = 0;i<list_json.length;i++)
-                {
-                    if(list_json[i] == name)
-                    {
-                        var repeat=1;
-                    }
-                }
-                if(repeat==1)
+                if(is_repeat(name))
                 {
                     $scope.tips="活动名称有重复，请重新输入！"
                 }
@@ -59,3 +49,15 @@ function is_localStorage_null(){
         return false
     }
 }
+function is_repeat(name)
+{
+    var list_json= JSON.parse(localStorage['activityKey'] || '[]');
+    for(var i = 0;i<list_json.length;i++)
+    {
+        if (list_json[i] == name) {
+           return true;
+        }
+    }
+    return false
+}
+
