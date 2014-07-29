@@ -13,25 +13,25 @@ angular.module('partyBidApp')
         $scope.go_activity_list = function(){
             $location.path('/activity_list');};
 
-        $scope.state = function(){
+        $scope.in_start_state = function(){
+            $scope.in_state = "end";
+
             var state = localStorage.getItem('state')|| "开始";
-            if(state == "开始")
-            {
-                state = "结束";
-                $scope.stateButton = "结束" ;
-            }
-            else{
-                if(confirm("报名结束确认?"))
-                {
-                    state = "开始"
-                    $scope.stateButton = "开始";
-                }
-            }
             localStorage.setItem('state', state);
             var currentActive = localStorage.getItem('yourChoice');
             localStorage.setItem('currentActive', currentActive);
             $location.path('activity_sign_up');
         };
+        $scope.in_end_state = function(){
+            $scope.in_state = "start";
+        };
+//        if(confirm("报名结束确认?"))
+//        {
+//            startSigningUpButtonText = "开始";
+//            $scope.stateButtonText = "开始";
+//            localStorage.setItem('currentActive', '[]');
+//        }
+
         $scope.stateButton = localStorage['state'] || "开始";//设计接口 在改变按钮字样
         //点过一次上面了
         if((localStorage['state'] == 0))
@@ -65,28 +65,30 @@ angular.module('partyBidApp')
             var sms_items_filted = [];
             for (var indexer = 0; indexer < JSON.parse(localStorage['sms_data']).length; indexer++) {
                 if (sms_items[indexer].activity == JSON.parse(localStorage['yourChoice'])) {
-//                var sms_items_push = [];
-//                sms_items_push.push(sms_items[indexer]);
-//                console.log(sms_items[indexer].activity);
-//                $scope.sms_items
+                var sms_items_push = [];
+                sms_items_push.push(sms_items[indexer]);
+                console.log(sms_items[indexer].activity);
+                $scope.sms_items
                     sms_items_filted.push(sms_items[indexer]);
                     console.log(sms_items[indexer]);
                     console.log(sms_items[indexer].activity);
                 }
-
-//            if (JSON.parse(localStorage['sms_data'])[indexer].activity == JSON.parse(localStorage['currentActive']))
-
-//            $scope.sms_items = sms_items
-
-//    console.log("console.log(JSON.parse(localStorage['sms_data']).activity);");
+//
+            if (JSON.parse(localStorage['sms_data'])[indexer].activity == JSON.parse(localStorage['currentActive']))
+//
+            $scope.sms_items = sms_items
+//
+    console.log("console.log(JSON.parse(localStorage['sms_data']).activity);");
             }
             }
-            console.log(sms_items_filted);
+//            console.log(sms_items_filted);
             $scope.sms_items = sms_items_filted;
             $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
-
-
-//        console.log(JSON.parse(localStorage['sms_data'])[0].activity);
+//
+//
+        console.log(JSON.parse(localStorage['sms_data'])[0].activity);
         console.log();
 
     })
+
+
