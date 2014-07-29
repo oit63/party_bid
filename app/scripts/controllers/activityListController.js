@@ -16,13 +16,13 @@ angular.module('partyBidApp')
         };
 
         $scope.clickForDetail = function(HostsLatestChoice){
-            Activity.setHostsLatestChoice(HostsLatestChoice);
+            Activity.set_yourChoice(HostsLatestChoice);
             $location.path('activitySignUp');
         };
 
-        $scope.activityListInMemory = Activity.getActivityList();
+        $scope.activityListInMemory = Activity.get_activity_Key();
 
-        $scope.ActivedActivity = Activity.getActivedActivity();
+        $scope.ActivedActivity = Activity.get_current_active();
     });
 
 /**

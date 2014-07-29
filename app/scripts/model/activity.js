@@ -7,26 +7,26 @@ function Activity() {
 }
 
 
-Activity.setActivityList = function (activityList) {
-    localStorage.setItem("activityList", JSON.stringify(activityList));
+Activity.set_activity_list = function (activityKey) {
+    localStorage.setItem("activityKey", JSON.stringify(activityKey));
 };
-Activity.getActivityList = function () {
-    return JSON.parse(localStorage.getItem('activityList'));
-};
-
-Activity.setActivedActivity = function (ActivedActivity) {
-    localStorage.setItem("ActivedActivity", JSON.stringify(ActivedActivity));
-};
-Activity.getActivedActivity = function () {
-    return JSON.parse(localStorage.getItem('ActivedActivity')) || [];
+Activity.get_activity_Key = function () {
+    return JSON.parse(localStorage.getItem('activityKey'));
 };
 
-Activity.setHostsLatestChoice = function (HostsLatestChoice) {
-    localStorage.setItem("HostsLatestChoice", JSON.stringify(HostsLatestChoice));
+Activity.set_current_active = function (activityKey) {
+    localStorage.setItem("activityKey", JSON.stringify(activityKey));
+};
+Activity.get_current_active = function () {
+    return JSON.parse(localStorage.getItem('currentActive')) || [];
+};
+
+Activity.set_yourChoice = function (yourChoice) {
+    localStorage.setItem("yourChoice", JSON.stringify(yourChoice));
 };
 
 
-Activity.isFilledInActivityList = function () {
+Activity.activityKeyYou = function () {
     if (localStorage.length !== 0)
         return true;
     else
@@ -34,7 +34,7 @@ Activity.isFilledInActivityList = function () {
 };
 
 Activity.isRepeat = function (inputedString) {
-    var ArrayActivityNameInMemory = this.getActivityList() ;
+    var ArrayActivityNameInMemory = this.get_activity_Key() ;
     var isRepeat = 0;
     for (var i = 0; i < ArrayActivityNameInMemory.length; i++) {
         if (ArrayActivityNameInMemory[i] == inputedString) {

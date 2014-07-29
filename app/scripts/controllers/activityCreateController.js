@@ -12,7 +12,7 @@
  */
 angular.module('partyBidApp')
     .controller('activityCreateController', function ($scope, $location) {
-        $scope.isShowEscapeButton = Activity.isFilledInActivityList();
+        $scope.isShowEscapeButton = Activity.activityKeyYou();
         $scope.goToActivityListPage = function () {
             $location.path('/activityList')
         };
@@ -28,4 +28,6 @@ angular.module('partyBidApp')
 
         };
     });
+
+
 

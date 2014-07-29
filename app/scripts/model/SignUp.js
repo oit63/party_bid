@@ -5,13 +5,13 @@
 var SignUp = function () {
     SignUp.init = function (){
         if(!this.getChoice())
-            Init(HostsLatestChoice);
+            Init(yourChoice);
         if(!this.getMessageList())
             Init(ShortMessageList)
     },
 
     this.getChoice = function (){
-        return HostsLatestChoice.getChoice();
+        return yourChoice.getChoice();
     },
 
     this.getSigning = function (){

@@ -2,12 +2,12 @@
  * Created by TanghaoTsui on 14-7-28.
  */
 
-var HostsLatestChoice = {
+var yourChoice = {
     setChoice:function(value){
-        localStorage.setItem("HostsLatestChoice",value);
+        localStorage.setItem("yourChoice",value);
     },
     getChoice:function(){
-        return JSON.parse(localStorage.getItem('HostsLatestChoice'));
+        return JSON.parse(localStorage.getItem('yourChoice'));
     },
     setItem:function(key,value){
         localStorage.setItem(key,value);

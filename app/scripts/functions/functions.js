@@ -7,17 +7,6 @@ function Init(Key) {
 }
 //Belongs to CreateController
 
-function clickToSetActivityList(inputedString) {
-        console.log("function clickToSetActivityList click")
-        var ArrayActivityNameInMemory = Activity.getActivityList();
-        ArrayActivityNameInMemory.unshift(inputedString);
-        Activity.setActivityList(ArrayActivityNameInMemory);
-        HostsLatestChoice.setChoice(inputedString);
-}
-
-function isApplicationfirstRun(inputedString) {
-    return !Activity.isFilledInActivityList();
-}
 
 
 //Belongs to SignUpController
@@ -37,7 +26,7 @@ function shortMessageDevider(sms) {
         var message = {};
         message.message = sms.messages[0].message;
         message.phone = sms.messages[0].phone;
-        message.activity = Activity.getActivedActivity;
+        message.activity = Activity.get_current_active;
         ShortMessageList.push(message);
 
         var wrapper = angular.element(document.getElementById('wrapper')).scope();
