@@ -20,14 +20,8 @@ angular.module('partyBidApp')
         ];
         $scope.go_activity_list = function(){
             $location.path('/activity_list');};
-        if (localStorage.length != 0 )
-        {
-            $scope.names = true
-        }
-        else
-        {
-            $scope.names = false
-        }
+        $scope.names = is_localStorage_null();
+
 
         $scope.save_item = function (name)
             {
@@ -55,3 +49,13 @@ angular.module('partyBidApp')
 
     });
 
+function is_localStorage_null(){
+    if (localStorage.length)
+    {
+        return true
+    }
+    else
+    {
+        return false
+    }
+}
