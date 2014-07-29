@@ -8,6 +8,29 @@ var native_accessor = {
     },
 
     receive_message: function (json_message) {
+
+        console.log(json_message.messages[0].message);
+        var sms_data = JSON.parse(localStorage['sms_data'] || '[]');
+        var message = {};
+        message.message = json_message.messages[0].message;
+        message.phone = json_message.messages[0].phone;
+        message.activity = JSON.parse(localStorage['currentActive']);
+        sms_data.push(message);
+        localStorage.setItem("sms_data",JSON.stringify(sms_data));
+        var wrapper = angular.element(document.getElementById('wrapper')).scope();
+        wrapper.$apply(function () {
+            wrapper.refresh();
+        });
+
+        if(localStorage['state'] == '开始')
+        {
+            console.log("活动尚未开始，请稍后");
+        }
+        else
+        {
+            console.log("报名成功!");
+        }
+        var log = console.log("报名成功!");
         if (typeof this.process_received_message === 'function') {
             this.process_received_message(json_message);
             var sms_data = JSON.parse(localStorage['sms_data'] || '[]');
@@ -39,6 +62,18 @@ var native_accessor = {
     }
 };
 
+function delete_space(message){
+    return message.messages[0].message.replace(/\s/g,'');
+}
+
+function is_bm_message(message){
+    if(message.search(/bm/i)==0)
+    {
+        return true;
+    }
+    return false;
+
+}
 
 function notify_message_received(message_json) {
 //    console.log(JSON.stringify(message_json));
