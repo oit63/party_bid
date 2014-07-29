@@ -12,11 +12,11 @@ angular.module('partyBidApp')
         ];
         $scope.go_activity_list = function(){
             $location.path('/activity_list');};
-
+        var state;
         $scope.in_start_state = function(){
             $scope.in_state = "end";
+            localStorage["state"] = "runing";
 
-            var state = localStorage.getItem('state')|| "开始";
             localStorage.setItem('state', state);
             var currentActive = localStorage.getItem('yourChoice');
             localStorage.setItem('currentActive', currentActive);
@@ -24,6 +24,7 @@ angular.module('partyBidApp')
         };
         $scope.in_end_state = function(){
             $scope.in_state = "start";
+            localStorage["state"] = "stop";
         };
 //        if(confirm("报名结束确认?"))
 //        {
