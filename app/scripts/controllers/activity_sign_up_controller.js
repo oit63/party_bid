@@ -15,24 +15,22 @@ angular.module('partyBidApp')
             $location.path('/activity_list');
         };
 
-        $scope.in_start_state = function()
-        {
-            $scope.in_state = "end";
-            localStorage["state"] = "runing";
-            setCurrentAsChoice();
-            $location.path('activity_sign_up');
-        };
         $scope.in_end_state = function()
         {
-            $scope.in_state = "start";
-            localStorage["state"] = "stop";
+
+                $scope.in_state = "end";
+                localStorage["state"] = "runing";
+                setCurrentAsChoice();
+
         };
-//        if(confirm("报名结束确认?"))
-//        {
-//            startSigningUpButtonText = "开始";
-//            $scope.stateButtonText = "开始";
-//            localStorage.setItem('currentActive', '[]');
-//        }
+        $scope.in_start_state = function()
+        {
+            if(confirm("报名结束确认?"))
+            {
+                $scope.in_state = "start";
+                localStorage["state"] = "stop";
+            }
+        };
 
         $scope.stateButton = localStorage['state'] || "开始";//设计接口 在改变按钮字样
         //点过一次上面了
