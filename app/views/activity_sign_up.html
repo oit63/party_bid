@@ -2,8 +2,8 @@
 报名{{persons_count}}
 
 <div class="header-right" ng-switch="in_state">
-    <button  class="btn-style btn-4" ng-switch-default="start"     ng-disabled ="disFlag"  ng-click='in_end_state() ' >开始</button>
-    <button  class="btn-style btn-4" ng-switch-when="end"                          ng-click='in_start_state()'  >结束</button>
+    <button  class="btn-style btn-4" ng-switch-default="start"     ng-disabled ="disFlag"  ng-click='get_in_start_state() ' >开始</button>
+    <button  class="btn-style btn-4" ng-switch-when="end"                          ng-click='get_in_end_state()'  >结束</button>
 </div>
 
 <div class="header-left">
@@ -14,10 +14,10 @@
 
 <div id="wrapper" class="wrapper scrollable">
     <ul class="list-style-2">
-        <li class=" clearfix btn-default" ng-repeat="item in sms_items " > track by $index
+        <li class=" clearfix btn-default" ng-repeat="information in informations " > track by $index
 
-            <p class="p-left">{{item.message}}</p>
-            <i class="p-left">{{item.phone}}</i>
+            <p class="p-left">{{information.name}}</p>
+            <i class="p-left">{{information.phone}}</i>
             <span class="glyphicon  "></span>
         </li>
     </ul>

@@ -14,6 +14,8 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
+        //初始化数据
+        //-----------------------------------------//
         $scope.create_activity = '创建活动';
         //跳转到“创建活动”页面
         $scope.go_create_activity = function(){

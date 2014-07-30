@@ -18,6 +18,8 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
+        //初始化数据
+        //-----------------------------------------//
         $scope.go_activity_list = function(){
             $location.path('/activity_list');};
         $scope.names = is_localStorage_null();

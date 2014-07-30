@@ -18,15 +18,13 @@ var native_accessor = {
     process_received_message: function (json_message)
     {
         var result_phone = json_message.messages[0].phone;
-        console.log("1")
         var result_name_origin = json_message.messages[0].message.replace(/\s/g,'');
         var result_name = result_name_origin.toLowerCase();
+        //-----------------------------------------------//
         if(result_name.substring(0,2)=="bm")
         {
             if(is_in_start_state())
             {
-                console.log("2")
-                console.log("3")
                 if(isRepeat(result_phone))
                 {
                     native_accessor.send_sms(result_phone, "已收到报名信息，请勿重复报名");
@@ -35,7 +33,7 @@ var native_accessor = {
                 {
                     result_name = result_name.slice(2);
                     store_result_data(result_name,result_phone);
-                    native_accessor.send_sms(result_phone, "报名成功");
+                    native_accessor.send_sms(result_phone, "恭喜!报名成功");
                     //刷新
                     var wrapper = angular.element(document.getElementById('wrapper')).scope();
                     wrapper.$apply(function () {
@@ -47,11 +45,11 @@ var native_accessor = {
                 {
                     if(is_sms_belongs_activity_has_signed_yet())
                     {
-                        native_accessor.send_sms(result_phone, "活动报名已经结束");
+                        native_accessor.send_sms(result_phone, "Sorry,活动报名已结束");
                     }
                     else
                     {
-                        native_accessor.send_sms(result_phone, "活动尚未开始");
+                        native_accessor.send_sms(result_phone, "活动尚未开始,请稍后");
                     }
                 }
         }
@@ -77,7 +75,7 @@ function store_result_data(result_name,result_phone)
 
 function is_in_start_state()
 {
-   return localStorage.getItem("state")==JSON.stringify("runing")? true:false;
+   return localStorage.getItem("state")=="running"? true:false;
 
 }
 

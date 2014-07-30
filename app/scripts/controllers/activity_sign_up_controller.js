@@ -10,19 +10,33 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
+        //初始化数据
+        if(!localStorage['sms_data'])
+        {
+            localStorage['sms_data'] = [];
+        }
+        if(!localStorage['state'])
+        {
+            localStorage['state'] = "stop";
+        }
+        $scope.informations = sms_data_filted();
+
+        //-----------------------------------------//
         $scope.go_activity_list = function()
         {
             $location.path('/activity_list');
         };
-        $scope.in_end_state = function()
+        //-----------------------------------------//
+        $scope.get_in_start_state = function()
         {
-
-                $scope.in_state = "end";
-                localStorage["state"] = "runing";
-                setCurrentAsChoice();
+            $scope.in_state = "end";
+            localStorage["state"] = "running";
+            setCurrentAsChoice();
+            //-----------------------------//
+            var sms_data_process = JSON.parse(localStorage['sms_data']);
 
         };
-        $scope.in_start_state = function()
+        $scope.get_in_end_state = function()
         {
             if(confirm("报名结束确认?"))
             {
@@ -30,43 +44,27 @@ angular.module('partyBidApp')
                 localStorage["state"] = "stop";
             }
         };
-
-
-            var sms_items = JSON.parse(localStorage['sms_data'] || '[]' );
-            console.log(sms_items);
-            localStorage['sms_data'] = JSON.stringify(sms_items);
-
-            if(localStorage['sms_data'] != '[]')
-            {
-            var sms_items_filted = [];
-            for (var indexer = 0; indexer < JSON.parse(localStorage['sms_data']).length; indexer++) {
-                if (sms_items[indexer].activity == JSON.parse(localStorage['yourChoice'])) {
-                var sms_items_push = [];
-                sms_items_push.push(sms_items[indexer]);
-                console.log(sms_items[indexer].activity);
-                $scope.sms_items
-                    sms_items_filted.push(sms_items[indexer]);
-                    console.log(sms_items[indexer]);
-                    console.log(sms_items[indexer].activity);
-                }
-//
-            if (JSON.parse(localStorage['sms_data'])[indexer].activity == JSON.parse(localStorage['currentActive']))
-//
-            $scope.sms_items = sms_items
-//
-    console.log("console.log(JSON.parse(localStorage['sms_data']).activity);");
-            }
-            }
-//            console.log(sms_items_filted);
-            $scope.sms_items = sms_items_filted;
-            $scope.persons_count = "人数（"+ $scope.sms_items.length + "人）";
-//
-//
-        console.log(JSON.parse(localStorage['sms_data'])[0].activity);
-        console.log();
-
+        //-----------------------------------------//
+            $scope.persons_count = "人数（"+ $scope.informations.length + "人）";
+        //-----------------------------------------//
     })
 
+function sms_data_filted()
+{
+    var sms_data_filter = JSON.parse(localStorage['sms_data']);
+    for (var i = 0; i < sms_data_filter.length; i++)
+    {
+        if (sms_data_filter[i].activity == JSON.parse(localStorage['yourChoice'])) {
+            var sms_items_result = [];
+            sms_items_result.unshift(sms_data_filter[i]);
+            return sms_items_result;
+        }
+        else
+        {
+            console.log("不是当前活动的报名信息，不用过滤");
+        }
+    }
+}
 
 function setCurrentAsChoice()
 {
