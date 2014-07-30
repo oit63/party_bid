@@ -5,7 +5,6 @@ var native_accessor = {
 //        native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
 //          this.send_sms({"receivers":[{"phone":phone}]}, {"message_content":message});
         console.log(phone, message);
-
     },
 
     receive_message: function (json_message) {
@@ -14,7 +13,6 @@ var native_accessor = {
             this.process_received_message(json_message)
         }
     },
-
     process_received_message: function (json_message)
     {
         var result_phone = json_message.messages[0].phone;
@@ -59,6 +57,7 @@ var native_accessor = {
         }
     }
 };
+
 
 function store_result_data(result_name,result_phone)
 {
@@ -122,21 +121,7 @@ function is_sms_belongs_activity_has_signed_yet()
 
 
 function notify_message_received(message_json) {
-//    console.log(JSON.stringify(message_json));
-//    console.log(message_json.messages[0]);
-//    console.log(message_json.messages[0].name);
-//    console.log(message_json.messages[0].phone);
-    //JSON.stringify(message_json);
     //alert(JSON.stringify(message_json.messages));
     native_accessor.receive_message(message_json);
     //phone_number=message_json.messages[0].phone;
 }
-
-//var activitiesData = {
-//    save_activities: function (json_message)
-//    {
-//
-//    }
-//
-//
-//};
