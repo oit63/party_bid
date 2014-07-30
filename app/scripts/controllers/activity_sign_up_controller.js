@@ -11,7 +11,7 @@ angular.module('partyBidApp')
             'Karma'
         ];
         //-----------------------------------------//
-        //初始化数据
+        //初始化前提数据
         if(!localStorage['sms_data'])
         {
             localStorage['sms_data'] = [];
@@ -21,19 +21,19 @@ angular.module('partyBidApp')
             localStorage['state'] = "stop";
         }
         //-----------------------------------------//
-        //初始化“报名”显示
-        console.log("1")
-        if(is_sms_belongs_activity_has_signed_yet())//该活动已经进行过报名，并有存储数据，这会显示人数
+        //初始化页面中“报名”字样显示
+        if(is_sms_belongs_activity_has_signed_yet())//假如该活动已经进行过报名，并存有数据，这会显示人数
         {
             $scope.in_signed_state ="signed_yet_or_ing";
+            $scope.informationNumber = sms_data_filted().length;
         }
         else
         {
-            if(localStorage['state'] == "running") //该活动没有报过名，只有开始报名的时候，字样才显示人数
+            if(localStorage['state'] == "running") //假如该活动没有报过名，只有开始报名的时候，字样才显示人数
             {
                 $scope.in_signed_state ="signed_yet_or_ing";
             }
-            else//没存数据或者不在报名的时候，都不会显示人数
+            else//假如该活动没存数据或者不在报名的时候，都不会显示人数
             {
                 $scope.in_signed_state ="not_signed";
             }
@@ -56,9 +56,8 @@ angular.module('partyBidApp')
             $scope.in_state = "end";
         }
         //-----------------------------------------//
-        //读取数据
+        //读取滤过的报名信息
         $scope.informations = sms_data_filted();//读取并过滤本地的报名信息,并和到view层的数组绑定里
-//        (sms_data_filted().length) ?($scope.informationNumber = sms_data_filted().length) : ($scope.informationNumber =0);//统计当前活动的报名人数，并和到view层相应位置绑定
         //-----------------------------------------//
         //设置函数功能
         $scope.go_activity_list = function()
@@ -104,7 +103,7 @@ function sms_data_filted()
         }
         else
         {
-            console.log("不是当前活动的报名信息，不用过滤,不会显示");
+//            console.log("遍历的时候这句话会出现相应次数，不是当前活动的报名信息，将不予过滤,不予显示");
         }
     }
 }

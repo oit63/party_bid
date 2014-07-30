@@ -9,11 +9,6 @@
  */
 angular.module('partyBidApp')
     .controller('activity_list_controller', function ($scope, $location) {
-        $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
         //判断有没有存过数据
         if(!localStorage.length)
         {
@@ -34,9 +29,24 @@ angular.module('partyBidApp')
             localStorage['yourChoice'] = JSON.stringify(event);
             $location.path('activity_sign_up');
         };
+        if(is_sign_up_running())
+        {
+            $scope.currentActivityResult = JSON.parse(localStorage['currentActive'])
+        }
         $scope.activities = JSON.parse(localStorage['activityKey']);
     });
 
+function is_sign_up_running()
+{
+    if(localStorage['state']== "running")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 /**
  * Created by TanghaoTsui on 14-7-15.
  */

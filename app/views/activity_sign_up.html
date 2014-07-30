@@ -1,7 +1,7 @@
 <header>
     <div ng-switch="in_signed_state">
         <p  ng-switch-when="not_signed" >报名</p>
-        <a ng-switch-when="signed_yet_or_ing">报名({{informationNumber}})人</a>
+        <p ng-switch-when="signed_yet_or_ing">报名({{informationNumber}})人</p>
     </div>
     <div class="header-right" ng-switch="in_state">
         <button  class="btn-style btn-4" ng-switch-when="end"   ng-click='get_in_start_state() ' >开始</button>
@@ -18,7 +18,6 @@
 <div id="wrapper" class="wrapper scrollable">
     <ul class="list-style-2">
         <li class=" clearfix btn-default" ng-repeat="information in informations " > {{information.name}}
-
             <p class="p-left">{{information.activity}}</p>
             <i class="p-left">{{information.phone}}</i>
             <span class="glyphicon  "></span>
