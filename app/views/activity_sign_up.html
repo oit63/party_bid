@@ -5,8 +5,8 @@
     </div>
 <div class="header-right" ng-switch="in_state">
     <button  class="btn-style btn-4" ng-switch-when="end"   ng-click='get_in_start_state() ' >开始</button>
-
     <button  class="btn-style btn-4" ng-switch-when="recieving" ng-disable= disableFlag      ng-click='get_in_end_state()'  >结束</button>
+    <button  class="btn btn-4" ng-switch-when="grey"   ng-disabled="true"  >开始</button>
 
 </div>
 
