@@ -98,8 +98,12 @@ function isRepeat(phone)
 {
     var sms_data_index = JSON.parse(localStorage["sms_data"]);
     for(var i=0;i<sms_data_index.length;i++){
-        if (sms_data_index[i].phone==phone) {
-            return true;
+        if (sms_data_index[i].phone==phone)
+        {
+            if(JSON.stringify(sms_data_index[i].activity) == localStorage.getItem("currentActive"))
+            {
+                return true;
+            }
         };
     }
     return false;
@@ -115,6 +119,7 @@ function is_sms_belongs_activity_has_signed_yet()
     }
     return false;
 }
+
 
 function notify_message_received(message_json) {
 //    console.log(JSON.stringify(message_json));
