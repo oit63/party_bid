@@ -1,9 +1,13 @@
 <header>
-报名{{persons_count}}
-
+    <div ng-switch="in_state">
+        <p  ng-switch-default >报名</p>
+        <a ng-switch-when="end">报名人数</a>
+    </div>
 <div class="header-right" ng-switch="in_state">
-    <button  class="btn-style btn-4" ng-switch-default="start"     ng-disabled ="disFlag"  ng-click='get_in_start_state() ' >开始</button>
-    <button  class="btn-style btn-4" ng-switch-when="end"                          ng-click='get_in_end_state()'  >结束</button>
+    <button  class="btn-style btn-4" ng-switch-when="end"   ng-click='get_in_start_state() ' >开始</button>
+
+    <button  class="btn-style btn-4" ng-switch-when="recieving" ng-disable= disableFlag      ng-click='get_in_end_state()'  >结束</button>
+
 </div>
 
 <div class="header-left">

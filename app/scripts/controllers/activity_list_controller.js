@@ -14,27 +14,27 @@ angular.module('partyBidApp')
             'AngularJS',
             'Karma'
         ];
+        //判断有没有存过数据
+        if(!localStorage.length)
+        {
+            $location.path('/create_activity');
+        }
         //初始化数据
+        if(!localStorage['activityKey'])
+        {
+            localStorage['activityKey'] = [];
+        }
         //-----------------------------------------//
-        $scope.create_activity = '创建活动';
-        //跳转到“创建活动”页面
-        $scope.go_create_activity = function(){
-            $location.path('create_activity');};
-        //跳转到“活动登陆”页面
-        $scope.go_activity_sign_up = function(event){
-            localStorage['yourChoice']=JSON.stringify(event);
-           $location.path('activity_sign_up');
-    };
-
-        if(localStorage.length!=0)
-            {
-                $scope.activities = JSON.parse(localStorage['activityKey'] || "[]");
-            }
-        else
-            {
-                $location.path('/create_activity');
-            }
-
+        $scope.go_create_activity = function()
+        {
+            $location.path('create_activity');
+        };
+        $scope.go_activity_sign_up = function(event)
+        {
+            localStorage['yourChoice'] = JSON.stringify(event);
+            $location.path('activity_sign_up');
+        };
+        $scope.activities = JSON.parse(localStorage['activityKey']);
     });
 
 /**

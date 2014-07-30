@@ -19,7 +19,6 @@ angular.module('partyBidApp')
         {
             localStorage['state'] = "stop";
         }
-        $scope.informations = sms_data_filted();
 
         //-----------------------------------------//
         $scope.go_activity_list = function()
@@ -27,6 +26,7 @@ angular.module('partyBidApp')
             $location.path('/activity_list');
         };
         //-----------------------------------------//
+        $scope.disableFlag = judge_grey();
         $scope.get_in_start_state = function()
         {
             $scope.in_state = "end";
@@ -34,18 +34,18 @@ angular.module('partyBidApp')
             setCurrentAsChoice();
             //-----------------------------//
             var sms_data_process = JSON.parse(localStorage['sms_data']);
-
+            $scope.informations = sms_data_filted();
         };
         $scope.get_in_end_state = function()
         {
             if(confirm("报名结束确认?"))
             {
-                $scope.in_state = "start";
+                $scope.in_state = "recieving";
                 localStorage["state"] = "stop";
             }
         };
         //-----------------------------------------//
-            $scope.persons_count = "人数（"+ $scope.informations.length + "人）";
+
         //-----------------------------------------//
     })
 
@@ -54,16 +54,19 @@ function sms_data_filted()
     var sms_data_filter = JSON.parse(localStorage['sms_data']);
     for (var i = 0; i < sms_data_filter.length; i++)
     {
-        if (sms_data_filter[i].activity == JSON.parse(localStorage['yourChoice'])) {
+        if (sms_data_filter[i].activity == JSON.parse(localStorage['yourChoice']))
+        {
             var sms_items_result = [];
             sms_items_result.unshift(sms_data_filter[i]);
             return sms_items_result;
         }
         else
         {
-            console.log("不是当前活动的报名信息，不用过滤");
+
+            console.log("不是当前活动的报名信息，不用过滤,不会显示");
         }
     }
+
 }
 
 function setCurrentAsChoice()
@@ -73,13 +76,15 @@ function setCurrentAsChoice()
 }
 
 
-function judgeGrey()
+function judge_grey()
 {
-    if((localStorage['state'] == running))
+    if((localStorage['state'] == "running")&&(localStorage['currentActive'] !== localStorage['yourChoice']))
     {
-        if(localStorage['currentActive'] != localStorage['yourChoice'])
-        {
-            $scope.disFlag = true;
-        }
+        return "grey";
     }
+    else
+    {
+        return false;
+    }
+
 }
