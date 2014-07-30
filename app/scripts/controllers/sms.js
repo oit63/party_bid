@@ -3,8 +3,8 @@
 var native_accessor = {
     send_sms: function (phone, message) {
 //        native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
-          native_access.send_sms({"receivers":[{"phone":phone}]}, {"message_content":message});
-//        console.log(phone, message);
+//          this.send_sms({"receivers":[{"phone":phone}]}, {"message_content":message});
+        console.log(phone, message);
 
     },
 
@@ -17,39 +17,69 @@ var native_accessor = {
 
     process_received_message: function (json_message)
     {
+        var result_phone = json_message.messages[0].phone;
+        console.log("1")
         var result_name_origin = json_message.messages[0].message.replace(/\s/g,'');
         var result_name = result_name_origin.toLowerCase();
         if(result_name.substring(0,2)=="bm")
         {
-            var result_phone = json_message.messages[0].phone;
-            if(isRepeat(result_phone))
+            if(is_in_start_state())
             {
-                console.log("已收到报名信息，请勿重复报名")
+                console.log("2")
+                console.log("3")
+                if(isRepeat(result_phone))
+                {
+                    native_accessor.send_sms(result_phone, "已收到报名信息，请勿重复报名");
+                }
+                else
+                {
+                    result_name = result_name.slice(2);
+                    store_result_data(result_name,result_phone);
+                    native_accessor.send_sms(result_phone, "报名成功");
+                    //刷新
+                    var wrapper = angular.element(document.getElementById('wrapper')).scope();
+                    wrapper.$apply(function () {
+                    wrapper.refresh();
+                    });
+                }
             }
             else
-            {
-                result_name = result_name.slice(2);
-                var result_activity = JSON.parse(localStorage['currentActive']);
-                var result_message = {};
-                result_message.name = result_name;
-                result_message.phone = result_phone;
-                result_message.activity = JSON.parse(localStorage['currentActive']);
-                var result_sms_data;
-                result_sms_data.push(result_message);
-                localStorage.setItem("sms_data",JSON.stringify(result_sms_data));
-                native_accessor.send_sms(result_message.phone, "报名成功");
-                console.log("报名成功!");
-                //刷新
-                var wrapper = angular.element(document.getElementById('wrapper')).scope();
-                wrapper.$apply(function () {
-                wrapper.refresh();
-                });
-
-            }
+                {
+                    if(is_sms_belongs_activity_has_signed_yet())
+                    {
+                        native_accessor.send_sms(result_phone, "活动报名已经结束");
+                    }
+                    else
+                    {
+                        native_accessor.send_sms(result_phone, "活动尚未开始");
+                    }
+                }
+        }
+        else
+        {
+            native_accessor.send_sms(result_phone, "短信发送格式不属于报名范畴!");
         }
     }
 };
 
+function store_result_data(result_name,result_phone)
+{
+    var result_activity = JSON.parse(localStorage['currentActive']);
+    var result_message = {};
+    result_message.name = result_name;
+    result_message.phone = result_phone;
+    result_message.activity = JSON.parse(localStorage['currentActive']);
+     //---------------------------------------------------------------//
+    var result_sms_data = JSON.parse(localStorage['sms_data']);
+    result_sms_data.unshift(result_message);
+    localStorage.setItem("sms_data",JSON.stringify(result_sms_data));
+}
+
+function is_in_start_state()
+{
+   return localStorage.getItem("state")==JSON.stringify("runing")? true:false;
+
+}
 
 function delete_space(message)
 {
@@ -68,10 +98,20 @@ function is_bm_message(message)
 
 function isRepeat(phone)
 {
-    var current_activity = JSON.parse(localStorage['currentActive']);
-    var sms_data_users = JSON.parse(localStorage[sms_data]);
-    for(var i=0;i<sms_data_users.length;i++){
-        if (sms_data_users[i].phone==phone) {
+    var sms_data_index = JSON.parse(localStorage["sms_data"]);
+    for(var i=0;i<sms_data_index.length;i++){
+        if (sms_data_index[i].phone==phone) {
+            return true;
+        };
+    }
+    return false;
+}
+
+function is_sms_belongs_activity_has_signed_yet()
+{
+    var sms_data_index = JSON.parse(localStorage["sms_data"]);
+    for(var i=0;i<sms_data_index.length;i++){
+        if (JSON.stringify(sms_data_index[i].activity) == localStorage.getItem("yourChoice")) {
             return true;
         };
     }

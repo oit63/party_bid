@@ -14,7 +14,6 @@ angular.module('partyBidApp')
         {
             $location.path('/activity_list');
         };
-
         $scope.in_end_state = function()
         {
 
@@ -31,29 +30,6 @@ angular.module('partyBidApp')
                 localStorage["state"] = "stop";
             }
         };
-
-        $scope.stateButton = localStorage['state'] || "开始";//设计接口 在改变按钮字样
-        //点过一次上面了
-        if((localStorage['state'] == 0))
-        {
-
-        }
-        else if((localStorage['state'] == '结束'))
-        {
-            if(localStorage.getItem('currentActive') == localStorage.getItem('yourChoice'))
-            {
-
-            }
-            else
-            {
-                $scope.disFlag = true;
-                //设计接口改变按钮字样
-            }
-        }
-        else
-        {
-
-        }
 
 
             var sms_items = JSON.parse(localStorage['sms_data'] || '[]' );
@@ -92,7 +68,20 @@ angular.module('partyBidApp')
     })
 
 
-function setCurrentAsChoice() {
+function setCurrentAsChoice()
+{
     var currentActive = localStorage.getItem('yourChoice');
     localStorage.setItem('currentActive', currentActive);
+}
+
+
+function judgeGrey()
+{
+    if((localStorage['state'] == running))
+    {
+        if(localStorage['currentActive'] != localStorage['yourChoice'])
+        {
+            $scope.disFlag = true;
+        }
+    }
 }
