@@ -15,9 +15,9 @@
 
 </header>
 
-<div id="wrapper" class="wrapper scrollable">
+<div id="wrappers" class="wrapper scrollable">
     <ul class="list-style-2">
-        <li class=" clearfix btn-default" ng-repeat="information in informations " > {{information.name}}
+        <li class=" clearfix btn-default" ng-repeat="information in informations track by $index" > {{information.name}}
             <p class="p-left">{{information.activity}}</p>
             <i class="p-left">{{information.phone}}</i>
             <span class="glyphicon  "></span>

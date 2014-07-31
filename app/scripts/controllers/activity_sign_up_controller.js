@@ -14,7 +14,7 @@ angular.module('partyBidApp')
         //初始化前提数据
         if(!localStorage['sms_data'])
         {
-            localStorage['sms_data'] = [];
+            localStorage['sms_data'] = "[]";
         }
         if(!localStorage['state'])
         {
@@ -22,22 +22,19 @@ angular.module('partyBidApp')
         }
         //-----------------------------------------//
         //初始化页面中“报名”字样显示
-        if(is_sms_belongs_activity_has_signed_yet())//假如该活动已经进行过报名，并存有数据，这会显示人数
+        if(is_sms_belongs_activity_has_signed_yet())//假如该活动已经进行过报名，并存有数据，会显示人数
         {
             $scope.in_signed_state ="signed_yet_or_ing";
-            $scope.informationNumber = sms_data_filted().length;
-        }
-        else
-        {
-            if(localStorage['state'] == "running") //假如该活动没有报过名，只有开始报名的时候，字样才显示人数
+			//	 $scope.informationNumber = sms_data_filted().length;			
+		}
+        else if(localStorage['state'] == "running") //假如该活动在报名，字样显示人数
             {
                 $scope.in_signed_state ="signed_yet_or_ing";
             }
-            else//假如该活动没存数据或者不在报名的时候，都不会显示人数
-            {
-                $scope.in_signed_state ="not_signed";
-            }
-        }
+            else//假如该活动既没存数据也不在报名的时候，都不会显示人数
+                {
+                    $scope.in_signed_state ="not_signed";
+                }
         //-----------------------------------------//
         //初始化按钮
         if(localStorage['state'] == "running")//-有活动在运行
@@ -56,8 +53,12 @@ angular.module('partyBidApp')
             $scope.in_state = "end";
         }
         //-----------------------------------------//
-        //读取滤过的报名信息
-        $scope.informations = sms_data_filted();//读取并过滤本地的报名信息,并和到view层的数组绑定里
+        //读取滤过的报名信息,并实时刷新
+		$scope.refresh = function ()
+		{
+            $scope.informations = sms_data_filted();//读取并过滤本地的报名信息,并和到view层的数组绑定里
+		}
+		$scope.refresh();
         //-----------------------------------------//
         //设置函数功能
         $scope.go_activity_list = function()
@@ -93,13 +94,13 @@ angular.module('partyBidApp')
 function sms_data_filted()
 {
     var sms_data_filter = JSON.parse(localStorage['sms_data']);
-    for (var i = 0; i < sms_data_filter.length; i++)
+    for (var i = 0; i < sms_data_filter.length;i++) 
     {
         if (sms_data_filter[i].activity == JSON.parse(localStorage['yourChoice']))
         {
-            var sms_items_result = [];
-            sms_items_result.unshift(sms_data_filter[i]);
-            return sms_items_result;
+			var sms_result = [];
+            sms_result.unshift(sms_data_filter[i]);
+            return sms_result;
         }
         else
         {
@@ -120,4 +121,5 @@ function clearCurrentAsChoice()
 {
     localStorage.setItem('currentActive', "");
 }
+//-----------------------------------------//
 
