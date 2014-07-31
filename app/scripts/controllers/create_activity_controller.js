@@ -36,19 +36,11 @@ angular.module('partyBidApp')
                     $location.path('/activity_sign_up')
                 }
             }
-
-
     });
 
-function is_localStorage_null(){
-    if (localStorage.length)
-    {
-        return true
-    }
-    else
-    {
-        return false
-    }
+function is_localStorage_null()
+{
+    return Boolean(localStorage.length)
 }
 
 function is_repeat(name)

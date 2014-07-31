@@ -17,7 +17,7 @@ angular.module('partyBidApp')
         //初始化数据
         if(!localStorage['activityKey'])
         {
-            localStorage['activityKey'] = [];
+            localStorage['activityKey'] = "[]";
         }
         //-----------------------------------------//
         $scope.go_create_activity = function()

@@ -65,6 +65,19 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+		<script src="plugins/underscore.js"></script>
+        <script src="plugins/lib/cordova/cordova-2.1.0.js"></script>
+        <script src="plugins/lib/angular-mobile/mobile-nav.min.js"></script>
+        <script src="plugins/lib/zepto/zepto.js"></script>
+        <script src="plugins/lib/infrastructure/native.js"></script>
+        <script src="plugins/lib/jt-logic.js/conditions.js"></script>
+        <script src="plugins/lib/jt-logic.js/relations.js"></script>
+        <script src="plugins/lib/jt-logic.js/would.js"></script>
+        <script src="plugins/lib/jt-notify.js/notify.js"></script>
+        <script src="plugins/lib/jt/jt.js"></script>
+        <script src="plugins/lib/jt/JTObject.js"></script>
+        <script src="plugins/mobile.js"></script>
+	<!--以上js引用放在自己的app.js上面，优先加载-->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/create_activity_controller.js"></script>

@@ -2,7 +2,7 @@
  * Created by TanghaoTsui on 14-7-15.
  */
 
-
+ 
 angular.module('partyBidApp')
     .controller('activity_sign_up_controller', function ($scope, $location) {
         $scope.awesomeThings = [
@@ -20,21 +20,6 @@ angular.module('partyBidApp')
         {
             localStorage['state'] = "stop";
         }
-        //-----------------------------------------//
-        //初始化页面中“报名”字样显示
-        if(is_sms_belongs_activity_has_signed_yet())//假如该活动已经进行过报名，并存有数据，会显示人数
-        {
-            $scope.in_signed_state ="signed_yet_or_ing";
-			//	 $scope.informationNumber = sms_data_filted().length;			
-		}
-        else if(localStorage['state'] == "running") //假如该活动在报名，字样显示人数
-            {
-                $scope.in_signed_state ="signed_yet_or_ing";
-            }
-            else//假如该活动既没存数据也不在报名的时候，都不会显示人数
-                {
-                    $scope.in_signed_state ="not_signed";
-                }
         //-----------------------------------------//
         //初始化按钮
         if(localStorage['state'] == "running")//-有活动在运行
@@ -56,7 +41,38 @@ angular.module('partyBidApp')
         //读取滤过的报名信息,并实时刷新
 		$scope.refresh = function ()
 		{
-            $scope.informations = sms_data_filted();//读取并过滤本地的报名信息,并和到view层的数组绑定里
+            $scope.informations = sms_data_filted();//读取并过滤本地的报名信息,并和到view层的数组绑定里	
+			//-----------------------------------------//
+			//初始化页面中“报名”字样显示
+			if(is_sms_belongs_activity_has_signed_yet())//假如该活动已经进行过报名，并存有数据，会显示人数
+			{
+				$scope.in_signed_state ="signed_yet_or_ing";
+				$scope.in_signed_state ="signed_yet_or_ing";
+				if($scope.informations)
+				{
+					$scope.informationNumber = $scope.informations.length;		
+				}else
+				{
+					$scope.informationNumber = "0";
+				}
+			}
+			else if(localStorage['state'] == "running") //假如该活动在报名，字样显示人数
+				{
+					$scope.in_signed_state ="signed_yet_or_ing";
+					if($scope.informations)
+					{
+						$scope.informationNumber = $scope.informations.length;		
+					}else
+					{
+						$scope.informationNumber = "0";
+					}
+				}
+				else//假如该活动既没存数据也不在报名的时候，都不会显示人数
+					{
+						$scope.in_signed_state ="not_signed";
+					}
+
+
 		}
 		$scope.refresh();
         //-----------------------------------------//
@@ -93,20 +109,20 @@ angular.module('partyBidApp')
 //读取并过滤本地的报名信息
 function sms_data_filted()
 {
+	var sms_result = [];
     var sms_data_filter = JSON.parse(localStorage['sms_data']);
     for (var i = 0; i < sms_data_filter.length;i++) 
     {
-        if (sms_data_filter[i].activity == JSON.parse(localStorage['yourChoice']))
+        if(localStorage['yourChoice'] = JSON.stringify( sms_data_filter[i].activity ))
         {
-			var sms_result = [];
             sms_result.unshift(sms_data_filter[i]);
-            return sms_result;
         }
         else
         {
 //            console.log("遍历的时候这句话会出现相应次数，不是当前活动的报名信息，将不予过滤,不予显示");
         }
     }
+	 return sms_result;
 }
 //-----------------------------------------//
 //活动开始三级准备：将当前页面的活动名称存到“currentActive”键值对里
