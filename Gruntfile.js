@@ -8,7 +8,7 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
-
+    grunt.loadNpmTasks('grunt-jade');
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -27,9 +27,14 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: appConfig,
 
-    // Watches files for changes and runs tasks based on the changed files
+
+          // Watches files for changes and runs tasks based on the changed files
     watch: {
-      bower: {
+        jade: {
+            files: ['<%= yeoman.app %>/{,*/}*.jade'],
+            tasks: ['jade']
+        },
+        bower: {
         files: ['bower.json'],
         tasks: ['wiredep']
       },
@@ -56,11 +61,12 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/.tmp/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
+          '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ]
-      }
+        ]}
+
     },
 
     // The actual grunt server settings
@@ -111,6 +117,7 @@ module.exports = function (grunt) {
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes
+
     jshint: {
       options: {
         jshintrc: '.jshintrc',
@@ -129,6 +136,20 @@ module.exports = function (grunt) {
         src: ['test/spec/{,*/}*.js']
       }
     },
+      jade: {
+          dist: {
+              options: {
+                  pretty: true
+              },
+              files: [{
+                  expand: true,
+                  cwd: '<%= yeoman.app %>',
+                  dest: '.tmp',
+                  src: '{,*/}*.jade',
+                  ext: '.html'
+              }]
+          }
+      },
 
     // Empties folders to start fresh
     clean: {
@@ -270,7 +291,8 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>',
+          cwd: '.tmp',
+            //<%= yeoman.dist %>
           src: ['*.html', 'views/{,*/}*.html'],
           dest: '<%= yeoman.dist %>'
         }]
@@ -337,6 +359,7 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'jade',
         'copy:styles'
       ],
       test: [
@@ -361,7 +384,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run(['build','jade','connect:dist:keepalive']);
     }
 
     grunt.task.run([
