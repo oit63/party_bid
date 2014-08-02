@@ -1,0 +1,13 @@
+html
+  body
+    header
+      | &#x6D3B;&#x52A8;&#x5217;&#x8868;
+      .header-right
+        a.btn.btn-4(ng-disabled='{{act}}', ng-click='go_create_activity()') &#x521B;&#x5EFA;&#x6D3B;&#x52A8;
+    #wrapper.wrapper.scrollable
+      ul.list-style-2
+        li.clearfix.btn-default(ng-repeat='activity in activities', ng-click='go_activity_sign_up(activity)')
+          h3(class = "{{activity == currentActivityResult}}") {{activity}}
+          | &gt;
+          // class="{{activity == currentActive}}"
+          // c<span class="p-left glyphicon p-right"></span>
