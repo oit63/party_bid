@@ -7,67 +7,55 @@ angular.module('partyBidApp')
     .controller('activity_sign_up_controller', function ($scope, $location) {
         //-----------------------------------------//
         //初始化前提数据
-        if(!localStorage['sms_data'])
-        {
-            localStorage['sms_data'] = "[]";
-        }
-        if(!localStorage['state'])
-        {
-            localStorage['state'] = "stop";
-        }
+        Initialization.sign_up_sms_data();
+        Initialization.sign_up_state ();
+
         //-----------------------------------------//
         //初始化按钮
-        if(localStorage['state'] == "running")//-有活动在运行
-        {
-			if(localStorage['currentActive'] == localStorage['yourChoice'])//-就是这个活动在运行
-            {
-                $scope.in_state = "recieving";
-            }
-            if(localStorage['currentActive'] !== localStorage['yourChoice'])//-不是这个活动在运行
-            {
-                $scope.in_state = "grey";
-            }
+        var in_state_flag = Initialization.sign_up_in_state_flag();
+        switch(in_state_flag){
+            case "recieving" : $scope.in_state = "recieving";
+                break;
+            case "grey" : $scope.in_state = "grey";
+                break;
+            case "end" : $scope.in_state = "end";
+                break;
         }
-        else//-没有活动在运行
-        {
-            $scope.in_state = "end";
-        }
+        console.log(localStorage['yourChoice']);
         //-----------------------------------------//
         //读取滤过的报名信息,并实时刷新
 		$scope.refresh = function ()
 		{
-            $scope.informations = sms_data_filted();//读取并过滤本地的报名信息,并和到view层的数组绑定里	
-			//-----------------------------------------//
-			//初始化页面中“报名”字样显示
-			if(is_sms_belongs_activity_has_signed_yet())//假如该活动已经进行过报名，并存有数据，会显示人数
-			{
-				$scope.in_signed_state ="signed_yet_or_ing";
-				if($scope.informations)
-				{
-					$scope.informationNumber = $scope.informations.length;		
-				}else
-				{
-					$scope.informationNumber = "0";
-				}
-			}
-			else if(localStorage['state'] == "running") //假如该活动在报名，字样显示人数
-				{
-					$scope.in_signed_state ="signed_yet_or_ing";
-					if($scope.informations)
-					{
-						$scope.informationNumber = $scope.informations.length;		
-					}else
-					{
-						$scope.informationNumber = "0";
-					}
-				}
-				else//假如该活动既没存数据也不在报名的时候，都不会显示人数
-					{
-						$scope.in_signed_state ="not_signed";
-					}
-
-
-		}
+            $scope.informations = sms_data_filted();//读取并过滤本地的报名信息,并和到view层的数组绑定里
+            //-----------------------------------------//
+            //初始化页面中“报名”字样显示
+            if(is_sms_belongs_activity_has_signed_yet())//假如该活动已经进行过报名，并存有数据，会显示人数
+            {
+                $scope.in_signed_state ="signed_yet_or_ing";
+                if($scope.informations)
+                {
+                    $scope.informationNumber = $scope.informations.length;
+                }else
+                {
+                    $scope.informationNumber = "0";
+                }
+            }
+            else if(localStorage['state'] == "running") //假如该活动在报名，字样显示人数
+            {
+                $scope.in_signed_state ="signed_yet_or_ing";
+                if($scope.informations)
+                {
+                    $scope.informationNumber = $scope.informations.length;
+                }else
+                {
+                    $scope.informationNumber = "0";
+                }
+            }
+            else//假如该活动既没存数据也不在报名的时候，都不会显示人数
+            {
+                $scope.in_signed_state ="not_signed";
+            }
+        }
 		$scope.refresh();
         //-----------------------------------------//
         //设置函数功能
@@ -105,9 +93,10 @@ function sms_data_filted()
 {
 	var sms_result = [];
     var sms_data_filter = JSON.parse(localStorage['sms_data']);
+
     for (var i = 0; i < sms_data_filter.length;i++) 
     {
-        if(localStorage['yourChoice'] = JSON.stringify( sms_data_filter[i].activity ))
+        if(localStorage['yourChoice'] == JSON.stringify( sms_data_filter[i].activity ))
         {
             sms_result.unshift(sms_data_filter[i]);
         }

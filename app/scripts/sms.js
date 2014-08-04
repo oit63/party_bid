@@ -36,6 +36,7 @@ var native_accessor = {
                     var wrappers = angular.element(document.getElementById('wrappers')).scope();
                     wrappers.$apply(function () {
                     wrappers.refresh();
+
                     });
                 }
             }
