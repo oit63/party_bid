@@ -5,11 +5,6 @@
  
 angular.module('partyBidApp')
     .controller('activity_sign_up_controller', function ($scope, $location) {
-        $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
         //-----------------------------------------//
         //初始化前提数据
         if(!localStorage['sms_data'])
@@ -24,7 +19,7 @@ angular.module('partyBidApp')
         //初始化按钮
         if(localStorage['state'] == "running")//-有活动在运行
         {
-            if(localStorage['currentActive'] == localStorage['yourChoice'])//-就是这个活动在运行
+			if(localStorage['currentActive'] == localStorage['yourChoice'])//-就是这个活动在运行
             {
                 $scope.in_state = "recieving";
             }
@@ -46,7 +41,6 @@ angular.module('partyBidApp')
 			//初始化页面中“报名”字样显示
 			if(is_sms_belongs_activity_has_signed_yet())//假如该活动已经进行过报名，并存有数据，会显示人数
 			{
-				$scope.in_signed_state ="signed_yet_or_ing";
 				$scope.in_signed_state ="signed_yet_or_ing";
 				if($scope.informations)
 				{

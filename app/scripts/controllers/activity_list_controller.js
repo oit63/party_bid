@@ -20,6 +20,17 @@ angular.module('partyBidApp')
             localStorage['activityKey'] = "[]";
         }
         //-----------------------------------------//
+	    //初始化按钮
+        if(localStorage['state'] == "running")//-有活动在运行
+        {
+			$scope.act = true    
+		}
+        else//-没有活动在运行
+        {
+            $scope.act = false   
+		}
+
+        //-----------------------------------------//
         $scope.go_create_activity = function()
         {
             $location.path('create_activity');
