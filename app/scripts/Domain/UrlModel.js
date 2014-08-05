@@ -12,7 +12,7 @@ partyBidApp
             templateUrl: 'views/create_activity.html',
             controller: 'create_activity_controller'
         })
-        .when('/activity_sign_up', {
+        .when('/activity_sign_up/:activity_name', {
             templateUrl: 'views/activity_sign_up.html',
             controller: 'activity_sign_up_controller'
         })

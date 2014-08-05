@@ -6,15 +6,15 @@ function Initialization () {
 };
 Initialization.create_page = function ()
 {
-    if (!localStorage['activityKey'])
+    if (!localStorage['activities'])
     {
-        Activity.set_activityKey([]);
+        Activity.set_activities([]);
     }
 },
 
 Initialization.list = function ()
 {
-    if (!localStorage['activityKey'])
+    if (!localStorage['activities'])
     {
         $location.path('/create_activity');
     }

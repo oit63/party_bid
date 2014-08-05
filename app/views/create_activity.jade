@@ -1,18 +1,16 @@
-html
-  body
-    header
-      | &#x521B;&#x5EFA;&#x6D3B;&#x52A8;
-      .header-left
-        a.btn-style.btn-4(ng-show='names', ng-click='go_activity_list()') &#x8FD4;&#x56DE;
-    #wrapper.wrapper.scrollable
-      .wrapper-inner
-        .form-wrapper
-          hr
-          h4 &#x6D3B;&#x52A8;&#x540D;&#x5B57;
-          input.input-full(ng-model='name', placeholder='Enter a name here', type='text')
-          br
-          h4(style='color:#dd1144') {{tips}}
-          hr
-    footer
-      button.btn.btn-2(ng-disabled='!name', ng-click='save_item(name)') &#x521B;&#x5EFA;
-    | &gt;
+header
+  | 创建活动
+  .header-left
+    a.btn-style.btn-4(ng-show='names', ng-click='go_activity_list()') 返回
+#wrapper.wrapper.scrollable
+  .wrapper-inner
+    .form-wrapper
+      hr
+      h4 活动名称
+      input.input-full(ng-model='name', placeholder='Enter a name here', type='text')
+      br
+      h4(style='color:#dd1144') {{tips}}
+      hr
+footer
+  button.btn.btn-2(ng-disabled='!name', ng-click='save_item(name)') 创建
+| &gt;

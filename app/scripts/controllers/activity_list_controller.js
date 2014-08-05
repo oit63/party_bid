@@ -1,26 +1,14 @@
 'use strict';
 angular.module('partyBidApp')
     .controller('activity_list_controller', function ($scope, $location) {
-        //初始化数据
-        //-----------------------------------------//
         Initialization.list();
         $scope.act = Initialization.list_style();
-        $scope.go_create_activity = function()
-        {
+        $scope.go_create_activity = function () {
             $location.path('create_activity');
         };
-        $scope.go_activity_sign_up = function(activity)
-        {
-            Activity.set_yourChoice(activity);
-            $location.path('activity_sign_up');
+        $scope.go_activity_sign_up = function (activity_name) {
+            Activity.find_by_name(activity_name).change_attribute("is_choosed", true);
+            $location.path('activity_sign_up/' + activity_name);
         };
-        if(Activity.sign_up.state_is_running())
-        {
-            $scope.currentActivityResult = Activity.sign_up.get_currentActive();
-        }
-        $scope.activities = Activity.get_activityKey();
+        $scope.activities = Activity.get_activities();
     });
-
-/**
- * Created by TanghaoTsui on 14-7-15.
- */

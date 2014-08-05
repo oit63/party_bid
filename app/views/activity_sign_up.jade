@@ -1,28 +1,26 @@
-html
-  body
-    header
-      div(ng-switch='in_signed_state')
-        p(ng-switch-when='not_signed') &#x62A5;&#x540D;
-        p(ng-switch-when='signed_yet_or_ing') &#x62A5;&#x540D;({{informationNumber}})&#x4EBA;
-      .header-right(ng-switch='in_state')
-        button.btn-style.btn-4(ng-switch-when='end', ng-click='get_in_start_state() ') &#x5F00;&#x59CB;
-        button.btn-style.btn-4(ng-switch-when='recieving', ng-disable='disableFlag', ng-click='get_in_end_state()') &#x7ED3;&#x675F;
-        button.btn.btn-4(ng-switch-when='grey', ng-disabled='true') &#x5F00;&#x59CB;
-      .header-left
-        a.btn-style.btn-4(ng-click='go_activity_list()') &#x8FD4;&#x56DE;
-    #wrappers.wrapper.scrollable
-      ul.list-style-2
-        li.clearfix.btn-default(ng-repeat='information in informations track by $index')
-          h3 {{information.name}}
-          i.p-left {{information.phone}}
-          span.glyphicon
-    footer
-      ul.footer-nav.footer-nav-2tabs
-        li.active
-          a(href='survey-list.html')
-            br
-            | &#x62A5;&#x540D;
-        li
-          a(href='survey-history.html')
-            br
-            | &#x7ADE;&#x4EF7;
+header
+  div(ng-switch='in_signed_state')
+    p(ng-switch-when='not_signed') 报名
+    p(ng-switch-when='signed_yet_or_ing') 报名({{informationNumber}})人;
+  .header-right(ng-switch='show_which_btn')
+    button.btn-style.btn-4(ng-switch-when='active_start', ng-click='start_activity()') 开始
+    button.btn-style.btn-4(ng-switch-when='end', ng-click='stop_activity()') 结束
+    button.btn.btn-4(ng-switch-when='disabled_start', ng-disabled='true') 开始
+  .header-left
+    a.btn-style.btn-4(ng-click='go_activity_list()') 返回
+#wrappers.wrapper.scrollable
+  ul.list-style-2
+    li.clearfix.btn-default(ng-repeat='information in informations track by $index')
+      h3 {{information.name}}
+      i.p-left {{information.phone}}
+      span.glyphicon
+footer
+  ul.footer-nav.footer-nav-2tabs
+    li.active
+      a(href='survey-list.html')
+        br
+        | 报名
+    li
+      a(href='survey-history.html')
+        br
+        | 竞价
