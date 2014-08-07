@@ -1,19 +1,20 @@
 header
-  div(ng-switch='in_signed_state')
-    p(ng-switch-when='not_signed') 报名
-    p(ng-switch-when='signed_yet_or_ing') 报名({{informationNumber}})人;
+  div(ng-switch='show_which_title')
+    p(ng-switch-when='none_number') 报名
+    p(ng-switch-when='show_number') 报名（{{total_number}}）人;
   .header-right(ng-switch='show_which_btn')
     button.btn-style.btn-4(ng-switch-when='active_start', ng-click='start_activity()') 开始
     button.btn-style.btn-4(ng-switch-when='end', ng-click='stop_activity()') 结束
     button.btn.btn-4(ng-switch-when='disabled_start', ng-disabled='true') 开始
   .header-left
     a.btn-style.btn-4(ng-click='go_activity_list()') 返回
-#wrappers.wrapper.scrollable
-  ul.list-style-2
-    li.clearfix.btn-default(ng-repeat='information in informations track by $index')
-      h3 {{information.name}}
-      i.p-left {{information.phone}}
-      span.glyphicon
+
+#WRAPPER_REGISTER_PAGE.wrapper.scrollable
+    ul.list-style-2
+        li.clearfix.btn-default(ng-repeat='signUpMessage in signUpMessages')
+            h3 {{signUpMessage.message_name}}
+            i.p-left {{signUpMessage.message_phone}}
+
 footer
   ul.footer-nav.footer-nav-2tabs
     li.active

@@ -1,4 +1,6 @@
 'use strict';
+
+
 /**
  * @ngdoc overview
  * @name partyBidApp
@@ -7,6 +9,10 @@
  *
  * Main module of the application.
  */
+
+
+
+
 var partyBidApp = angular
   .module('partyBidApp', [
     'ngAnimate',
