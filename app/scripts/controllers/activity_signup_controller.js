@@ -9,7 +9,7 @@
 
 
 angular.module('partyBidApp')
-    .controller('activity_sign_up_controller', function ($scope, $location, $routeParams) {
+    .controller('activity_signup_controller', function ($scope, $location, $routeParams) {
 
 
         Initialization.signUpMessages();
@@ -78,27 +78,36 @@ angular.module('partyBidApp')
 
 
         $scope.go_activity_list = function () {
+
+
             Activity.find_by_name($routeParams.activity_name).change_attribute('is_choosed', false);
             $location.path('/activity_list');
+
         };
 
 
 
 
         $scope.start_activity = function () {
+
+
             $scope.show_which_btn = 'end';
             Activity.find_by_name($routeParams.activity_name).change_attribute('state', 'running');
+
         };
 
 
 
 
         $scope.stop_activity = function () {
+
+
             if (confirm('报名结束确认?')) {
 
 
                 Activity.find_by_name($routeParams.activity_name).change_attribute('state', 'stop');
                 $scope.show_which_btn = 'active_start';
+	            $location.path('bid_list/' + $routeParams.activity_name);
 
             }
 

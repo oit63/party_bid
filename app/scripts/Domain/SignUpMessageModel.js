@@ -14,6 +14,7 @@ function SignUpMessage(message_name, message_phone, activity_name) {
     this.message_name  = message_name  || undefine;
     this.message_phone = message_phone || undefine;
     this.activity_name = activity_name || undefine;
+
 }
 
 

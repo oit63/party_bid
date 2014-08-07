@@ -18,18 +18,18 @@ angular.module('partyBidApp')
         $scope.go_create_activity = function () {
 
 
-            $location.path('create_activity');
+	        $location.path('create_activity');
 
         };
 
 
 
 
-        $scope.go_activity_sign_up = function (activity_name) {
+		$scope.go_activity_signup = function (activity_name) {
 
 
-            Activity.find_by_name(activity_name).change_attribute('is_choosed', true);
-            $location.path('activity_sign_up/' + activity_name);
+			Activity.find_by_name(activity_name).change_attribute('is_choosed', true);
+            $location.path('activity_signup/' + activity_name);
 
         };
 
