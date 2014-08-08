@@ -26,7 +26,12 @@ angular.module('partyBidApp')
 
 		$scope.end_bid_signup = function () {
 
+			if (confirm('确定要结束本次竞价吗?')) {
 
+
+				$location.path('bid_list/' + serial_number);
+
+			}
 		}
 
 

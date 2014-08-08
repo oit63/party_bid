@@ -47,7 +47,7 @@ partyBidApp
 
 
 
-        .when('/bid_list/:activity_name', {
+        .when('/bid_list/:activity_name/:serial_number', {
 
 
             templateUrl: 'views/bid_list.html',
@@ -58,7 +58,7 @@ partyBidApp
 
 
 
-	    .when('/bid_signup/:activity_name', {
+	    .when('/bid_signup/:activity_name/:serial_number', {
 
 
 		    templateUrl: 'views/bid_signup.html',

@@ -65,7 +65,7 @@ angular.module('partyBidApp')
             if(Activity.is_choosed_running()) {
 
 
-                $scope.total_number = '0';
+                $scope.total_number = 0;
                 return $scope.show_which_title = 'show_number';
 
             }
@@ -101,15 +101,15 @@ angular.module('partyBidApp')
 
         $scope.stop_activity = function () {
 
+	        if (confirm('报名结束确认?')) {
 
-            if (confirm('报名结束确认?')) {
 
+		        Activity.find_by_name($routeParams.activity_name).change_attribute('state', 'stop');
+		        $scope.show_which_btn = 'active_start';
+		        Boolean($scope.total_number) ? $location.path('bid_list/' + $routeParams.activity_name + "/" + "0"):"";
 
-                Activity.find_by_name($routeParams.activity_name).change_attribute('state', 'stop');
-                $scope.show_which_btn = 'active_start';
-	            $location.path('bid_list/' + $routeParams.activity_name);
+	        }
 
-            }
 
         };
 

@@ -9,6 +9,12 @@ function Activity (name, state, is_choosed) {
     this.is_choosed = is_choosed || true;
 
 }
+Activity.prototype.is_has_no_signup_message = function () {
+
+
+	return !SignUpMessage.get_messages_choosed(this.name)
+}
+
 
 
 

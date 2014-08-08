@@ -22,11 +22,14 @@ angular.module('partyBidApp')
 
 
 
-		$scope.start_new_bid = function (bid_serial_number) {
+		$scope.start_new_bid = function () {
 
 
+			Bid.new_a_bid();
 			$location.path('/bid_signup/' + $routeParams.activity_name );
 
 		}
+
+
 
 	});

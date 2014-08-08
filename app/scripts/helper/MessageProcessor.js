@@ -93,6 +93,39 @@ MessageProcessor.PROCESS_NEW_MESSAGE = function (source_message) {
 			}
 			native_accessor.send_sms(message_phone, 'Sorry,活动尚未开始或已结束');
 
+		},
+
+
+
+
+		jj: function () {
+
+
+			if (Activity.is_has_running() && Bid.is_has) {
+
+
+				var message_name = trim_message.slice(2);
+				return MessageProcessor.process_registe_message(message_name, message_phone);
+
+			}
+
+
+
+
+			if (Activity.find_choosed_activity()) {
+
+
+				var statement = {
+					'stop': 'Sorry,活动尚未开始或已结束',
+					'un_start': 'Sorry,活动尚未开始或已结束'
+
+				};
+				return native_accessor.send_sms(message_phone, statement[Activity.find_choosed_activity().state]);
+
+			}
+			native_accessor.send_sms(message_phone, 'Sorry,活动尚未开始或已结束');
+
+
 		}
 
 	};
