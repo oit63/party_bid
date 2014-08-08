@@ -16,17 +16,18 @@ header
 
 
         button.btn-style.btn-4(ng-click='start_new_bid()') 开始
-    //
+
+
     //.header-right(ng-switch='show_which_btn')
     //    button.btn-style.btn-4(ng-switch-when='active_start', ng-click='start_activity()') 开始
     //    button.btn-style.btn-4(ng-switch-when='end', ng-click='stop_activity()') 结束
     //    button.btn.btn-4(ng-switch-when='disabled_start', ng-disabled='true') 开始
     //.header-left
-    //
-    //.wrapper.scrollable
-    //    ul.list-style-2
-    //        li.clearfix.btn-default(ng-repeat='signUpMessage in signUpMessages')
-    //            h3 {{signUpMessage.message_name}}
+
+    .wrapper.scrollable
+        ul.list-style-2
+            li.clearfix.btn-default(ng-repeat='bidEvent in bidEvents')
+                h3 竞价{{bidEvent.serial_number}}
     //            i.p-left {{signUpMessage.message_phone}}
 
 footer

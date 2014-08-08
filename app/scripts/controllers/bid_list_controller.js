@@ -24,8 +24,9 @@ angular.module('partyBidApp')
 
 		$scope.start_new_bid = function () {
 
-
-			Bid.new_a_bid();
+			//get_serial_number
+			var bidEvent = new BidEvent(1 ,$routeParams.activity_name);
+			bidEvent.save();
 			$location.path('/bid_signup/' + $routeParams.activity_name );
 
 		}

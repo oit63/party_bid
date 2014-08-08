@@ -5,8 +5,7 @@ angular.module('partyBidApp')
     .controller('activity_list_controller', function ($scope, $location) {
 
 
-        Initialization.list();
-
+        Activity.is_has_activities() ? "" : $location.path('/create_activity');
 
 
 

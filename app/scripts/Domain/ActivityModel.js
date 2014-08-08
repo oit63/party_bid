@@ -18,8 +18,7 @@ Activity.prototype.is_has_no_signup_message = function () {
 
 
 
-
-Activity.prototype.save = function () {
+	Activity.prototype.save = function () {
 
 
     var activities = Activity.get_activities();
@@ -45,6 +44,18 @@ Activity.prototype.change_attribute = function (attribute, value) {
     Activity.save_activities(activities);
 
 };
+
+
+
+
+
+Activity.is_has_activities = function () {
+
+
+	return localStorage['activities'] === [];
+
+},
+
 
 
 
