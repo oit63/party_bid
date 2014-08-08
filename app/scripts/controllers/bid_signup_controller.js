@@ -12,7 +12,7 @@ angular.module('partyBidApp')
 	.controller('bid_signup_controller', function ($scope, $location, $routeParams) {
 
 
-		$scope.go_bid_list = function () {
+		$scope.goto_bid_list = function () {
 
 
 
@@ -20,6 +20,14 @@ angular.module('partyBidApp')
 			$location.path('/bid_list/'+ $routeParams.activity_name);
 
 		};
+
+
+
+
+		$scope.end_bid_signup = function () {
+
+
+		}
 
 
 										}

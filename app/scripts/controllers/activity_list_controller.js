@@ -15,7 +15,7 @@ angular.module('partyBidApp')
 
 
 
-        $scope.go_create_activity = function () {
+        $scope.goto_create_activity = function () {
 
 
 	        $location.path('create_activity');
@@ -25,7 +25,7 @@ angular.module('partyBidApp')
 
 
 
-		$scope.go_activity_signup = function (activity_name) {
+		$scope.goto_activity_signup = function (activity_name) {
 
 
 			Activity.find_by_name(activity_name).change_attribute('is_choosed', true);

@@ -10,7 +10,7 @@ angular.module('partyBidApp')
 
 
 
-        $scope.go_activity_list = function () {
+        $scope.goto_activity_list = function () {
 
 
             $location.path('/activity_list');

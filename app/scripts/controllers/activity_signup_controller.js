@@ -77,7 +77,7 @@ angular.module('partyBidApp')
 
 
 
-        $scope.go_activity_list = function () {
+        $scope.goto_activity_list = function () {
 
 
             Activity.find_by_name($routeParams.activity_name).change_attribute('is_choosed', false);

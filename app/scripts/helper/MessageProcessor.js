@@ -84,8 +84,8 @@ MessageProcessor.PROCESS_NEW_MESSAGE = function (source_message) {
 
 
 				var statement = {
-					'stop': 'Sorry,活动已结束',
-					'un_start': 'Sorry,活动尚未开始'
+					'stop': 'Sorry,活动尚未开始或已结束',
+					'un_start': 'Sorry,活动尚未开始或已结束'
 
 				};
 				return native_accessor.send_sms(message_phone, statement[Activity.find_choosed_activity().state]);

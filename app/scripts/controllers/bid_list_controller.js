@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * Created by TanghaoTsui on 14-8-7.
  */
@@ -11,7 +12,7 @@ angular.module('partyBidApp')
 	.controller('bid_list_controller', function ($scope, $location, $routeParams) {
 
 
-		$scope.go_activity_list = function () {
+		$scope.goto_activity_list = function () {
 
 
 			Activity.find_by_name($routeParams.activity_name).change_attribute('is_choosed', false);
