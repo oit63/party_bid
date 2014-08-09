@@ -13,20 +13,6 @@ function BidEvent (serial_number,  activity_name,  state,  is_choosed) {
 
 
 
-BidEvent.get_bidEvents = function(){
-
-
-	return JSON.parse(localStorage.getItem('bidEvents'));
-};
-
-
-BidEvent.save_bidEvents = function(bidEvents){
-
-	localStorage.setItem('bidEvents', JSON.stringify(bidEvents));
-};
-
-
-
 
 BidEvent.prototype.save = function(){
 
@@ -40,12 +26,45 @@ BidEvent.prototype.save = function(){
 
 
 
-BidEvent.get_serial_number = function(){
+
+BidEvent.get_serial_number = function() {
+
+
+	var bidEvents = BidEvent.get_bidEvents();
+	return bidEvents.length;
+
+}
 
 
 
 
+BidEvent.set_serial_number = function() {
+
+
+	var bidEvents = BidEvent.get_bidEvents();
+	console.log(bidEvents.length+1)
+	return bidEvents.length+1;
+
+}
+
+
+
+
+BidEvent.get_bidEvents = function(){
+
+
+	return JSON.parse(localStorage.getItem('bidEvents'));
 };
+
+
+
+BidEvent.save_bidEvents = function(bidEvents){
+
+	localStorage.setItem('bidEvents', JSON.stringify(bidEvents));
+};
+
+
+
 
 
 

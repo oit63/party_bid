@@ -23,12 +23,11 @@ header
     //    button.btn-style.btn-4(ng-switch-when='end', ng-click='stop_activity()') 结束
     //    button.btn.btn-4(ng-switch-when='disabled_start', ng-disabled='true') 开始
     //.header-left
+#WRAPPER_REGISTER_PAGE.wrapper.scrollable
+    ul.list-style-2
+        li.clearfix.btn-default(ng-repeat='bidEvent in bidEvents', ng-click='goto_bid_signup(bidEvent.serial_number)')
+            h3 竞价{{bidEvent.serial_number}}
 
-    .wrapper.scrollable
-        ul.list-style-2
-            li.clearfix.btn-default(ng-repeat='bidEvent in bidEvents')
-                h3 竞价{{bidEvent.serial_number}}
-    //            i.p-left {{signUpMessage.message_phone}}
 
 footer
     ul.footer-nav.footer-nav-2tabs

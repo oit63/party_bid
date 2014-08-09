@@ -17,7 +17,7 @@ angular.module('partyBidApp')
 
 
 
-			$location.path('/bid_list/'+ $routeParams.activity_name);
+			$location.path('/bid_list/'+ $routeParams.activity_name + '/' + $routeParams.serial_number);
 
 		};
 
@@ -29,11 +29,12 @@ angular.module('partyBidApp')
 			if (confirm('确定要结束本次竞价吗?')) {
 
 
-				$location.path('bid_list/' + serial_number);
+				$location.path('bid_list/' + $routeParams.activity_name + '/' +  '0');
 
 			}
 		}
 
 
-										}
+	}
+
 	);

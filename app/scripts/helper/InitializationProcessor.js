@@ -38,6 +38,21 @@ Initialization.signUpMessages = function () {
 
 
 
+Initialization.bidEvents = function () {
+
+
+	if (!localStorage['bidEvents']) {
+
+
+		BidEvent.save_bidEvents([]);
+
+	}
+
+}
+
+
+
+
 /**
  * Created by TanghaoTsui on 14-8-4.
  */

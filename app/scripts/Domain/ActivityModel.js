@@ -52,7 +52,15 @@ Activity.prototype.change_attribute = function (attribute, value) {
 Activity.is_has_activities = function () {
 
 
-	return localStorage['activities'] === [];
+	if(localStorage.getItem("activities") === null)
+	{
+		return false;
+	}
+	if(JSON.parse(localStorage['activities']).length === 0){
+
+		return false;
+	}
+		return true;
 
 },
 

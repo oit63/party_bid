@@ -106,7 +106,7 @@ angular.module('partyBidApp')
 
 		        Activity.find_by_name($routeParams.activity_name).change_attribute('state', 'stop');
 		        $scope.show_which_btn = 'active_start';
-		        Boolean($scope.total_number) ? $location.path('bid_list/' + $routeParams.activity_name + "/" + "0"):"";
+		        Boolean($scope.total_number) ? $location.path('bid_list/' + $routeParams.activity_name + "/" + $routeParams.serial_number):"";
 
 	        }
 

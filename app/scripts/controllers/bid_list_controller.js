@@ -12,6 +12,13 @@ angular.module('partyBidApp')
 	.controller('bid_list_controller', function ($scope, $location, $routeParams) {
 
 
+		Initialization.bidEvents();
+
+
+		$scope.bidEvents = BidEvent.get_bidEvents();
+		console.log(JSON.stringify($scope.bidEvents))
+
+
 		$scope.goto_activity_list = function () {
 
 
@@ -20,14 +27,20 @@ angular.module('partyBidApp')
 
 		};
 
+		$scope.goto_bid_signup = function (bidEvent_serial_number) {
+
+
+			$location.path('/bid_signup/' + $routeParams.activity_name + "/" + bidEvent_serial_number);
+		}
+
 
 
 		$scope.start_new_bid = function () {
 
-			//get_serial_number
-			var bidEvent = new BidEvent(1 ,$routeParams.activity_name);
+
+			var bidEvent = new BidEvent(BidEvent.set_serial_number(), $routeParams.activity_name);
 			bidEvent.save();
-			$location.path('/bid_signup/' + $routeParams.activity_name );
+			$location.path('/bid_signup/' + $routeParams.activity_name + "/" + BidEvent.get_serial_number());
 
 		}
 
