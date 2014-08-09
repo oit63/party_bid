@@ -15,8 +15,16 @@ angular.module('partyBidApp')
 		Initialization.bidEvents();
 
 
+
+
+		$scope.unableStart =  BidEvent.is_has_running();
+
+
+
+
 		$scope.bidEvents = BidEvent.get_bidEvents();
-		console.log(JSON.stringify($scope.bidEvents))
+
+
 
 
 		$scope.goto_activity_list = function () {
@@ -27,11 +35,15 @@ angular.module('partyBidApp')
 
 		};
 
+
+
 		$scope.goto_bid_signup = function (bidEvent_serial_number) {
 
 
 			$location.path('/bid_signup/' + $routeParams.activity_name + "/" + bidEvent_serial_number);
+
 		}
+
 
 
 
@@ -44,6 +56,5 @@ angular.module('partyBidApp')
 
 		}
 
-
-
-	});
+	}
+	);

@@ -15,7 +15,7 @@ header
     .header-right
 
 
-        button.btn-style.btn-4(ng-click='start_new_bid()') 开始
+        button.btn.btn-4(ng-disabled='{{unableStart}}', ng-click='start_new_bid()') 开始
 
 
     //.header-right(ng-switch='show_which_btn')
@@ -26,7 +26,7 @@ header
 #WRAPPER_REGISTER_PAGE.wrapper.scrollable
     ul.list-style-2
         li.clearfix.btn-default(ng-repeat='bidEvent in bidEvents', ng-click='goto_bid_signup(bidEvent.serial_number)')
-            h3 竞价{{bidEvent.serial_number}}
+            h3(class = "{{bidEvent.state === 'running'}}") 竞价{{bidEvent.serial_number}}
 
 
 footer

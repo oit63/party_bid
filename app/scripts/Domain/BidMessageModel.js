@@ -4,13 +4,14 @@
 /**
  * Created by TanghaoTsui on 14-8-7.
  */
+//
 
-
-function BidMessage (message_name,  message_phone,  activity_name) {
+function BidMessage (message_name,  message_phone, serial_number,  activity_name) {
 
 
 	this.message_name = message_name  ;
 	this.message_phone = message_phone ;
+	this.serial_number = serial_number ;
 	this.activity_name = activity_name ;
 
 }

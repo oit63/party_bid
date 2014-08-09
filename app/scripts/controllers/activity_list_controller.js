@@ -9,7 +9,7 @@ angular.module('partyBidApp')
 
 
 
-        $scope.act = Activity.is_has_running();
+        $scope.unableCreate = Activity.is_has_running();
 
 
 

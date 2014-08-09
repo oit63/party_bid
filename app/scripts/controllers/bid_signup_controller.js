@@ -29,6 +29,7 @@ angular.module('partyBidApp')
 			if (confirm('确定要结束本次竞价吗?')) {
 
 
+				BidEvent.find_by_serial_number($routeParams.serial_number).change_attribute('state', 'stop');
 				$location.path('bid_list/' + $routeParams.activity_name + '/' +  '0');
 
 			}
